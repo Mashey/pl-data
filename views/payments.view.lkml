@@ -3,8 +3,14 @@ view: payments {
     ;;
   drill_fields: [payment_id]
 
-  dimension: payment_id {
+  dimension: pk {
     primary_key: yes
+    hidden: yes
+    type: string
+    sql: CONCAT(${payment_id},${amount_paid_string}) ;;
+  }
+
+  dimension: payment_id {
     type: string
     sql: ${TABLE}.payment_id ;;
   }
@@ -13,6 +19,12 @@ view: payments {
     type: number
     value_format_name: id
     sql: ${TABLE}.amount_paid ;;
+  }
+
+  dimension: amount_paid_string {
+    hidden: yes
+    type: string
+    sql: CAST(${amount_paid} AS string) ;;
   }
 
   dimension_group: last_updated {
@@ -67,5 +79,10 @@ view: payments {
   measure: count {
     type: count
     drill_fields: [payment_id, tickets.cash_drawer_name, tickets.ticket_id]
+  }
+
+  measure: total_amount_paid {
+    type: sum
+    sql: ${amount_paid} ;;
   }
 }
