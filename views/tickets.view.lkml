@@ -25,9 +25,15 @@ view: tickets {
     timeframes: [
       raw,
       time,
+      hour_of_day,
       date,
+      day_of_month,
+      day_of_week,
+      day_of_year,
       week,
       month,
+      month_name,
+      month_num,
       quarter,
       year
     ]
@@ -155,6 +161,31 @@ view: tickets {
     type: sum
     sql: ${sub_total} ;;
     value_format_name: usd
+  }
+
+  measure: gross_receipts {
+    type: sum
+    sql: ${total} ;;
+    value_format_name: usd
+  }
+
+  measure: total_taxes {
+    type: sum
+    sql: ${tax_total} ;;
+    value_format_name: usd
+  }
+
+  measure: total_orders {
+    type: count_distinct
+    sql: ${ticket_id} ;;
+    value_format: "0"
+  }
+
+  measure: average_order_value {
+    label: "AOV"
+    value_format: "$#,##0.00"
+    type: number
+    sql: ${net_sales} / nullif(${total_orders},0)  ;;
   }
 
   # ----- Sets of fields for drilling ------

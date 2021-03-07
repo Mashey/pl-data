@@ -151,6 +151,12 @@ view: ticket_items {
     type: count
     drill_fields: [product_size_name, location_name, tickets.cash_drawer_name, tickets.ticket_id, products.product_id]
   }
+
+  measure: total_units_sold_gross {
+    type: sum
+    value_format: "0"
+    sql: ${quantity} ;;
+  }
 }
 
 view: ticket_items__barcodes {
