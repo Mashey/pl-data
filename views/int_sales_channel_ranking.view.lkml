@@ -12,6 +12,13 @@ view: int_sales_channel_ranking {
     sql: ${TABLE}.customer_id ;;
   }
 
+  dimension: pk {
+    primary_key: yes
+    hidden: yes
+    type: string
+    sql: ${TABLE}.PK ;;
+  }
+
   dimension: sales_channel_ranking {
     type: number
     sql: ${TABLE}.sales_channel_ranking ;;

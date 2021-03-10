@@ -47,4 +47,18 @@ explore: order_items {
     relationship: one_to_many
     sql_on: ${customer_addresses.customer_id} = ${customers.id} ;;
   }
+
+  join: int_brand_ranking {
+    view_label: "Brand_Ranking"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${int_brand_ranking.customer_id} = ${customers.id} ;;
+  }
+
+  join: dim_customers {
+    view_label: "Customers_Dim_LTV"
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${dim_customers.customer_id} = ${tickets.customer_id} ;;
+  }
 }

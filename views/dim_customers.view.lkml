@@ -14,11 +14,13 @@ view: dim_customers {
 
   dimension: customer_visit_frequency {
     type: number
+    value_format: "0.0"
     sql: ${TABLE}.customer_visit_frequency ;;
   }
 
   dimension: days_aged {
     type: number
+    value_format: "0.0"
     sql: ${TABLE}.days_aged ;;
   }
 
@@ -72,11 +74,13 @@ view: dim_customers {
 
   dimension: lifetime_revenue {
     type: number
+    value_format: "$0.00"
     sql: ${TABLE}.lifetime_revenue ;;
   }
 
   dimension: lifetime_tickets {
     type: number
+    value_format: "0.0"
     sql: ${TABLE}.lifetime_tickets ;;
   }
 
@@ -124,5 +128,16 @@ view: dim_customers {
   measure: count {
     type: count
     drill_fields: [last_name, first_name]
+  }
+
+  measure: average_customer_visit_frequency {
+    type: average
+    value_format: "0.0"
+    sql: ${customer_visit_frequency} ;;
+  }
+  measure: average_days_aged {
+    type: average
+    value_format: "0.0"
+    sql: ${days_aged} ;;
   }
 }

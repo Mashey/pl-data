@@ -7,6 +7,13 @@ view: int_product_ranking {
     sql: ${TABLE}.customer_id ;;
   }
 
+  dimension: pk {
+    primary_key: yes
+    hidden: yes
+    type: string
+    sql: ${TABLE}.PK ;;
+  }
+
   dimension: product_brand {
     type: string
     sql: ${TABLE}.product_brand ;;
