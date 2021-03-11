@@ -74,7 +74,7 @@ view: dim_customers {
 
   dimension: lifetime_revenue {
     type: number
-    value_format: "$0.00"
+    value_format: "$#,##0.00"
     sql: ${TABLE}.lifetime_revenue ;;
   }
 
@@ -139,5 +139,29 @@ view: dim_customers {
     type: average
     value_format: "0.0"
     sql: ${days_aged} ;;
+  }
+
+  measure: total_rewards_balance {
+    type: sum
+    value_format: "0.0"
+    sql: ${rewards_balance} ;;
+  }
+
+  measure: count_distinct_customers {
+    type: count_distinct
+    value_format: "0"
+    sql: ${customer_id} ;;
+  }
+
+  measure: average_lifetime_value_revenue {
+    type: average
+    value_format: "$#,##0.00"
+    sql: ${lifetime_revenue} ;;
+  }
+
+  measure: average_lifetime_tickets {
+    type: average
+    value_format: "#,##0"
+    sql: ${lifetime_tickets} ;;
   }
 }

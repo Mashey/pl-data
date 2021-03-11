@@ -55,6 +55,27 @@ explore: order_items {
     sql_on: ${int_brand_ranking.customer_id} = ${customers.id} ;;
   }
 
+  join: int_product_ranking {
+    view_label: "Product_Ranking"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${int_product_ranking.customer_id} = ${customers.id} ;;
+  }
+
+  join: int_product_type_ranking {
+    view_label: "Product_Type_Ranking"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${int_product_type_ranking.customer_id} = ${customers.id} ;;
+  }
+
+  join: int_sales_channel_ranking {
+    view_label: "Sales_Channel_Ranking"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${int_sales_channel_ranking.customer_id} = ${customers.id} ;;
+  }
+
   join: dim_customers {
     view_label: "Customers_Dim_LTV"
     type: left_outer

@@ -14,6 +14,11 @@ view: tickets {
     sql: ${TABLE}.cash_drawer_name ;;
   }
 
+  dimension: cashier_name {
+    type: string
+    sql: ${TABLE}.cashier_name ;;
+  }
+
   dimension: customer_id {
     type: number
     # hidden: yes
