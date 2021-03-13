@@ -24,6 +24,13 @@ view: dim_customers {
     sql: ${TABLE}.days_aged ;;
   }
 
+  dimension: days_aged_tiers {
+    type: tier
+    tiers: [1,31,61,91,121,151]
+    style: integer
+    sql: ${days_aged} ;;
+  }
+
   dimension: email {
     type: string
     sql: ${TABLE}.email ;;
