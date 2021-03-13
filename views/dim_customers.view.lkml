@@ -26,9 +26,9 @@ view: dim_customers {
 
   dimension: days_aged_tiers {
     type: tier
-    tiers: [1,31,61,91,121,151]
+    tiers: [1,31,46,61,91]
     style: integer
-    sql: ${days_aged} ;;
+    sql: ${days_aged};;
   }
 
   dimension: email {
