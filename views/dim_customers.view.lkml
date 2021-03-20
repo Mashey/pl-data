@@ -129,4 +129,41 @@ view: dim_customers {
     type: count
     drill_fields: [last_name, first_name]
   }
+
+  measure: average_customer_visit_frequency {
+    type: average
+    value_format: "0.0"
+    sql: ${customer_visit_frequency} ;;
+  }
+  measure: average_days_aged {
+    type: average
+    value_format: "0.0"
+    sql: ${days_aged} ;;
+  }
+
+  measure: total_rewards_balance {
+    type: sum
+    value_format: "0.0"
+    sql: ${rewards_balance} ;;
+  }
+
+  measure: count_distinct_customers {
+    type: count_distinct
+    value_format: "0"
+    sql: ${customer_id} ;;
+  }
+
+  measure: average_lifetime_value_revenue {
+    type: average
+    value_format: "$#,##0.00"
+    sql: ${lifetime_revenue} ;;
+  }
+
+  measure: average_lifetime_tickets {
+    type: average
+    value_format: "#,##0"
+    sql: ${lifetime_tickets} ;;
+  }
+
+
 }

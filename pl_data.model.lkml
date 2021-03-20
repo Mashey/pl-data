@@ -8,12 +8,14 @@ explore: ticket_items {
   group_label: " Treez Data_SellTreez"
 
   join: dim_tickets {
+    view_label: "Tickets"
     type: inner
     relationship: many_to_one
     sql_on: ${dim_tickets.ticket_id} = ${ticket_items.ticket_id} ;;
   }
 
   join: dim_customers {
+    view_label: "Customers"
     type: inner
     relationship: many_to_one
     sql_on: ${dim_tickets.customer_id} = ${dim_customers.customer_id};;
@@ -26,6 +28,7 @@ explore: ticket_items {
   }
 
   join: dim_products{
+    view_label: "Products"
     type: inner
     relationship: many_to_one
     sql_on: ${ticket_items.product_id} = ${dim_products.product_id};;
@@ -72,3 +75,9 @@ explore: customers {
   }
 
 }
+
+explore: dim_tickets {
+  group_label: " Treez Data_SellTreez"
+  view_label: "Tickets"
+  label: "Tickets"
+  }

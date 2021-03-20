@@ -117,4 +117,37 @@ view: dim_tickets {
     type: count
     drill_fields: [cash_drawer_name, cashier_name]
   }
+
+  measure: net_sales {
+    type: sum
+    sql: ${sub_total} ;;
+    value_format_name: usd
+  }
+
+  measure: gross_receipts {
+    type: sum
+    sql: ${total} ;;
+    value_format_name: usd
+  }
+
+  measure: total_taxes {
+    type: sum
+    sql: ${tax_total} ;;
+    value_format_name: usd
+  }
+
+  measure: total_orders {
+    type: count_distinct
+    sql: ${ticket_id} ;;
+    value_format: "0"
+  }
+
+  measure: average_order_value {
+    label: "AOV"
+    value_format: "$#,##0.00"
+    type: number
+    sql: ${net_sales} / nullif(${total_orders},0)  ;;
+  }
+
+
 }

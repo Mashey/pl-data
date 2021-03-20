@@ -82,4 +82,10 @@ view: ticket_items {
     type: count
     drill_fields: [product_name, location_name]
   }
+
+  measure: total_units_sold {
+    type: sum
+    value_format: "#,##0"
+    sql: ${quantity};;
+  }
 }
