@@ -5,6 +5,7 @@ include: "/views/*.lkml"
 
 explore: ticket_items {
   from: ticket_items
+  group_label: " Treez Data_SellTreez"
 
   join: dim_tickets {
     type: inner
@@ -34,6 +35,7 @@ explore: ticket_items {
 
 explore: customers {
   from: dim_customers
+  group_label: " Treez Data_SellTreez"
 
   join: customer_addresses {
     type: left_outer
