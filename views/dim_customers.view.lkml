@@ -13,6 +13,7 @@ view: dim_customers {
   }
 
   dimension: customer_id {
+    primary_key: yes
     type: string
     sql: ${TABLE}.customer_id ;;
   }
@@ -98,13 +99,6 @@ view: dim_customers {
   dimension: phone {
     type: string
     sql: ${TABLE}.phone ;;
-  }
-
-  dimension: pk {
-    primary_key: yes
-    hidden: no
-    type: string
-    sql: ${TABLE}.PK ;;
   }
 
   dimension: referral_source {
