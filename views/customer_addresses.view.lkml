@@ -2,12 +2,6 @@ view: customer_addresses {
   sql_table_name: `fivetran-purple-lotus-warehous.dbt.customer_addresses`
     ;;
 
-  dimension: pk {
-    primary_key: yes
-    hidden: yes
-    sql: CONCAT(${customer_id}, ${street1}, ${street2}, ${city}, ${state}, ${zipcode}, ${primary}) ;;
-  }
-
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;
@@ -15,8 +9,21 @@ view: customer_addresses {
 
   dimension: customer_id {
     type: string
-    # hidden: yes
     sql: ${TABLE}.customer_id ;;
+  }
+
+  dimension_group: last_update {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.last_update ;;
   }
 
   dimension: primary {
@@ -51,6 +58,6 @@ view: customer_addresses {
 
   measure: count {
     type: count
-    drill_fields: [customers.last_name, customers.id, customers.first_name]
+    drill_fields: []
   }
 }

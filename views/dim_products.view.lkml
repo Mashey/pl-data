@@ -2,9 +2,28 @@ view: dim_products {
   sql_table_name: `fivetran-purple-lotus-warehous.dbt.dim_products`
     ;;
 
-  dimension: category_type {
+  dimension: classification {
     type: string
-    sql: ${TABLE}.category_type ;;
+    sql: ${TABLE}.classification ;;
+  }
+
+  dimension_group: created {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.created_date ;;
+  }
+
+  dimension: hidden_from_menu {
+    type: yesno
+    sql: ${TABLE}.hidden_from_menu ;;
   }
 
   dimension_group: last_updated {
@@ -19,6 +38,18 @@ view: dim_products {
       year
     ]
     sql: ${TABLE}.last_updated_at ;;
+  }
+
+  dimension: pk {
+    primary_key: yes
+    hidden: yes
+    type: string
+    sql: ${TABLE}.PK ;;
+  }
+
+  dimension: price_type {
+    type: string
+    sql: ${TABLE}.price_type ;;
   }
 
   dimension: product_brand {
@@ -36,9 +67,19 @@ view: dim_products {
     sql: ${TABLE}.product_name ;;
   }
 
+  dimension: product_sku {
+    type: string
+    sql: ${TABLE}.product_sku ;;
+  }
+
   dimension: product_status {
     type: string
     sql: ${TABLE}.product_status ;;
+  }
+
+  dimension: product_subtype {
+    type: string
+    sql: ${TABLE}.product_subtype ;;
   }
 
   dimension: product_type {
@@ -46,13 +87,33 @@ view: dim_products {
     sql: ${TABLE}.product_type ;;
   }
 
+  dimension: sell_price {
+    type: number
+    sql: ${TABLE}.sell_price ;;
+  }
+
   dimension: sellable_quantity {
     type: number
     sql: ${TABLE}.sellable_quantity ;;
   }
 
+  dimension: tier_name {
+    type: string
+    sql: ${TABLE}.tier_name ;;
+  }
+
+  dimension: unit_of_measure {
+    type: string
+    sql: ${TABLE}.unit_of_measure ;;
+  }
+
+  dimension: weight {
+    type: number
+    sql: ${TABLE}.weight ;;
+  }
+
   measure: count {
     type: count
-    drill_fields: [product_name]
+    drill_fields: [tier_name, product_name]
   }
 }

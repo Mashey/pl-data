@@ -7,6 +7,11 @@ view: dim_customers {
     sql: ${TABLE}.birthday ;;
   }
 
+  dimension: customer_group {
+    type: string
+    sql: ${TABLE}.customer_group ;;
+  }
+
   dimension: customer_id {
     type: string
     sql: ${TABLE}.customer_id ;;
@@ -14,21 +19,12 @@ view: dim_customers {
 
   dimension: customer_visit_frequency {
     type: number
-    value_format: "0.0"
     sql: ${TABLE}.customer_visit_frequency ;;
   }
 
   dimension: days_aged {
     type: number
-    value_format: "0.0"
     sql: ${TABLE}.days_aged ;;
-  }
-
-  dimension: days_aged_tiers {
-    type: tier
-    tiers: [1,31,46,61,91]
-    style: integer
-    sql: ${days_aged};;
   }
 
   dimension: email {
@@ -81,19 +77,22 @@ view: dim_customers {
 
   dimension: lifetime_revenue {
     type: number
-    value_format: "$#,##0.00"
     sql: ${TABLE}.lifetime_revenue ;;
   }
 
   dimension: lifetime_tickets {
     type: number
-    value_format: "0.0"
     sql: ${TABLE}.lifetime_tickets ;;
   }
 
   dimension: opt_out {
     type: string
     sql: ${TABLE}.opt_out ;;
+  }
+
+  dimension: percent_outside_visit_frequency {
+    type: number
+    sql: ${TABLE}.percent_outside_visit_frequency ;;
   }
 
   dimension: phone {
@@ -103,7 +102,7 @@ view: dim_customers {
 
   dimension: pk {
     primary_key: yes
-    hidden: yes
+    hidden: no
     type: string
     sql: ${TABLE}.PK ;;
   }
@@ -135,40 +134,5 @@ view: dim_customers {
   measure: count {
     type: count
     drill_fields: [last_name, first_name]
-  }
-
-  measure: average_customer_visit_frequency {
-    type: average
-    value_format: "0.0"
-    sql: ${customer_visit_frequency} ;;
-  }
-  measure: average_days_aged {
-    type: average
-    value_format: "0.0"
-    sql: ${days_aged} ;;
-  }
-
-  measure: total_rewards_balance {
-    type: sum
-    value_format: "0.0"
-    sql: ${rewards_balance} ;;
-  }
-
-  measure: count_distinct_customers {
-    type: count_distinct
-    value_format: "0"
-    sql: ${customer_id} ;;
-  }
-
-  measure: average_lifetime_value_revenue {
-    type: average
-    value_format: "$#,##0.00"
-    sql: ${lifetime_revenue} ;;
-  }
-
-  measure: average_lifetime_tickets {
-    type: average
-    value_format: "#,##0"
-    sql: ${lifetime_tickets} ;;
   }
 }
