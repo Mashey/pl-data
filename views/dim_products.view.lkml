@@ -40,13 +40,6 @@ view: dim_products {
     sql: ${TABLE}.last_updated_at ;;
   }
 
-  dimension: pk {
-    primary_key: yes
-    hidden: yes
-    type: string
-    sql: ${TABLE}.PK ;;
-  }
-
   dimension: price_type {
     type: string
     sql: ${TABLE}.price_type ;;
@@ -58,6 +51,7 @@ view: dim_products {
   }
 
   dimension: product_id {
+    primary_key: yes
     type: string
     sql: ${TABLE}.product_id ;;
   }
