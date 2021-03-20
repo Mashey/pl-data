@@ -38,4 +38,9 @@ view: int_brand_ranking {
     type: count
     drill_fields: []
   }
+
+  measure: total_quantity{
+    type: sum
+    sql: ${TABLE}.quantity ;;
+  }
 }
