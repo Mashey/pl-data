@@ -180,7 +180,7 @@ view: dim_customers {
   }
 
   measure: lifetime_aov {
-    type: number
+    type: average
     value_format: "$0.00"
     sql: ${lifetime_revenue}/nullif(${lifetime_tickets},0) ;;
   }
