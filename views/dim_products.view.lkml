@@ -61,11 +61,6 @@ view: dim_products {
     sql: ${TABLE}.product_name ;;
   }
 
-  dimension: product_sku {
-    type: string
-    sql: ${TABLE}.product_sku ;;
-  }
-
   dimension: product_status {
     type: string
     sql: ${TABLE}.product_status ;;
@@ -109,5 +104,11 @@ view: dim_products {
   measure: count {
     type: count
     drill_fields: [tier_name, product_name]
+  }
+
+  measure: total_sellable_quantity {
+    type: sum
+    value_format: "#,##0"
+    sql: ${sellable_quantity} ;;
   }
 }

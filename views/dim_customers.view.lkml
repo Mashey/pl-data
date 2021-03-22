@@ -28,6 +28,13 @@ view: dim_customers {
     sql: ${TABLE}.days_aged ;;
   }
 
+  dimension: days_aged_tiers {
+    type: tier
+    tiers: [1,16,31,46,61,91,121]
+    style: integer
+    sql: ${days_aged} ;;
+  }
+
   dimension: email {
     type: string
     sql: ${TABLE}.email ;;
@@ -94,6 +101,13 @@ view: dim_customers {
   dimension: percent_outside_visit_frequency {
     type: number
     sql: ${TABLE}.percent_outside_visit_frequency ;;
+  }
+
+  dimension: percent_outside_frequency_tiers {
+    type: tier
+    tiers: [0.01,0.7,0.8,0.9,1.2,2.0,3.0]
+    style: relational
+    sql: ${percent_outside_visit_frequency} ;;
   }
 
   dimension: phone {
