@@ -179,5 +179,10 @@ view: dim_customers {
     sql: ${lifetime_tickets} ;;
   }
 
+  measure: lifetime_aov {
+    type: number
+    value_format: "$0.00"
+    sql: ${lifetime_revenue}/nullif(${lifetime_tickets},0) ;;
+  }
 
 }
