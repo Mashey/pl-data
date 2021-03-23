@@ -148,6 +148,7 @@ view: dim_tickets {
     type: count_distinct
     sql: ${ticket_id} ;;
     value_format: "0"
+    drill_fields: [order_number, sub_total]
   }
 
   measure: average_order_value {
@@ -157,5 +158,15 @@ view: dim_tickets {
     sql: ${net_sales} / nullif(${total_orders},0)  ;;
   }
 
+  measure: total_rewards_points_earned{
+    value_format: "$#,##0.00"
+    type: sum
+    sql: ${reward_points_earned} ;;
+  }
 
+  measure: total_rewards_points_used {
+    value_format: "$#,##0.00"
+    type: sum
+    sql: ${reward_points_used} ;;
+  }
 }
