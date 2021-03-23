@@ -21,14 +21,22 @@ view: dim_tickets {
     type: time
     timeframes: [
       raw,
+      time_of_day,
       date,
       week,
+      week_of_year,
+      day_of_week,
       month,
+      month_num,
+      month_name,
+      day_of_month,
       quarter,
-      year
+      year,
+      day_of_year
+
     ]
-    convert_tz: no
-    datatype: date
+    convert_tz: yes
+    datatype: timestamp
     sql: ${TABLE}.date_closed ;;
   }
 
