@@ -161,12 +161,12 @@ view: dim_tickets {
   measure: total_rewards_points_earned{
     value_format: "$#,##0.00"
     type: sum
-    sql: ${reward_points_earned} ;;
+    sql: ${reward_points_earned}/100 ;;
   }
 
   measure: total_rewards_points_used {
     value_format: "$#,##0.00"
     type: sum
-    sql: ${reward_points_used} ;;
+    sql: ${reward_points_used}/100 ;;
   }
 }
