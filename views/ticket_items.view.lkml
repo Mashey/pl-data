@@ -2,6 +2,13 @@ view: ticket_items {
   sql_table_name: `fivetran-purple-lotus-warehous.dbt.ticket_items`
     ;;
 
+
+  dimension: discounts  {
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${TABLE}.discounts ;;
+  }
+
   dimension: inventory_batch_id {
     type: string
     sql: ${TABLE}.inventory_batch_id ;;
@@ -73,6 +80,16 @@ view: ticket_items {
     sql: ${TABLE}.quantity ;;
   }
 
+  dimension: unit_gross_sales {
+    type: number
+    sql: ${TABLE}.unit_gross_sales ;;
+  }
+
+  dimension: unit_gross_receipts {
+    type: number
+    sql: ${TABLE}.unit_gross_receipts ;;
+  }
+
   dimension: ticket_id {
     type: string
     sql: ${TABLE}.ticket_id ;;
@@ -88,4 +105,23 @@ view: ticket_items {
     value_format: "#,##0"
     sql: ${quantity};;
   }
+
+  measure: total_discount_amount {
+    type: sum
+    value_format: "$#,##0.00"
+    sql: ${discounts} ;;
+  }
+
+  measure: total_unit_gross_sales {
+    type: sum
+    value_format: "$#,##0.00"
+    sql: ${unit_gross_sales} ;;
+  }
+
+  measure: total_unit_gross_receipts {
+    type: sum
+    value_format: "$#,##0.00"
+    sql: ${unit_gross_receipts} ;;
+  }
+
 }

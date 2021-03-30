@@ -14,7 +14,7 @@ explore: ticket_items {
     sql_on: ${dim_tickets.ticket_id} = ${ticket_items.ticket_id} ;;
   }
 
-  join: dim_customers {
+ join: dim_customers {
     view_label: "Customers"
     type: inner
     relationship: many_to_one
@@ -80,4 +80,11 @@ explore: dim_tickets {
   group_label: " Treez Data_SellTreez"
   view_label: "Tickets"
   label: "Tickets"
+
+  join: ticket_item_discounts {
+    view_label: "Discounts"
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${ticket_item_discounts.ticket_id} = ${dim_tickets.ticket_id} ;;
+  }
   }
