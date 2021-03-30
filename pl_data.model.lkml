@@ -87,4 +87,11 @@ explore: dim_tickets {
     relationship: one_to_one
     sql_on: ${ticket_item_discounts.ticket_id} = ${dim_tickets.ticket_id} ;;
   }
+
+  join: dim_customers {
+    view_label: "Customers"
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${dim_customers.customer_id} = ${dim_tickets.customer_id} ;;
+  }
   }
