@@ -94,4 +94,32 @@ explore: dim_tickets {
     relationship: many_to_one
     sql_on: ${dim_customers.customer_id} = ${dim_tickets.customer_id} ;;
   }
+
+  join: int_brand_ranking {
+    view_label: "Brand_Ranking"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${int_brand_ranking.customer_id} = ${dim_customers.customer_id} ;;
+  }
+
+  join: int_product_ranking {
+    view_label: "Product_Ranking"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${int_product_ranking.customer_id} = ${dim_customers.customer_id} ;;
+  }
+
+  join: int_product_type_ranking {
+    view_label: "Product_Type_Ranking"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${int_product_type_ranking.customer_id} = ${dim_customers.customer_id} ;;
+  }
+
+  join: int_sales_channel_ranking {
+    view_label: "Sales_Channel_Ranking"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${int_sales_channel_ranking.customer_id} = ${dim_customers.customer_id} ;;
+  }
   }
