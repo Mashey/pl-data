@@ -95,6 +95,12 @@ explore: dim_tickets {
     sql_on: ${dim_customers.customer_id} = ${dim_tickets.customer_id} ;;
   }
 
+  join: customer_addresses {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${customer_addresses.customer_id} = ${dim_customers.customer_id};;
+  }
+
   join: int_brand_ranking {
     view_label: "Brand_Ranking"
     type: left_outer
