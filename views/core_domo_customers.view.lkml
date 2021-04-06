@@ -100,6 +100,6 @@ view: core_domo_customers {
   measure: total_reward_balance {
     type: sum
     value_format: "$#,##0.00"
-    sql: ${reward_balance} ;;
+    sql: ${reward_balance}/100 ;;
     }
 }

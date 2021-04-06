@@ -14,6 +14,7 @@ view: domo_brand_ranking {
 
   dimension: pk {
     primary_key: yes
+    hidden: yes
     type: string
     sql: ${TABLE}.PK ;;
   }

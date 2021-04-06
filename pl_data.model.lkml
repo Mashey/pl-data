@@ -130,3 +130,108 @@ explore: dim_tickets {
   }
 
 }
+
+explore: core_domo_ticket_items {
+  group_label: " Treez Data - DOMO NEW"
+  view_label: "Order Items"
+  label: "Order Items"
+
+
+  join: core_domo_customers {
+    view_label: "Customers"
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${core_domo_customers.customer_uuid} = ${core_domo_ticket_items.customer_uuid} ;;
+  }
+
+  join: domo_brand_ranking {
+    view_label: "Brand Ranking"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${domo_brand_ranking.customer_uuid} = ${core_domo_customers.customer_uuid} ;;
+  }
+
+  join: domo_product_ranking {
+    view_label: "Product Ranking"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${domo_product_ranking.customer_uuid} = ${core_domo_ticket_items.customer_uuid} ;;
+  }
+
+  join: domo_product_type_ranking {
+    view_label: "Product Type Ranking"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${domo_product_type_ranking.customer_uuid} = ${core_domo_ticket_items.customer_uuid} ;;
+  }
+
+  join: domo_sales_channel_ranking {
+    view_label: "Sales Channel Ranking"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${domo_product_type_ranking.customer_uuid} = ${core_domo_ticket_items.customer_uuid} ;;
+  }
+
+}
+
+explore: core_domo_customers {
+  group_label: " Treez Data - DOMO NEW"
+  view_label: "Customers"
+  label: "Customers"
+
+  join: core_domo_customer_lifetime_data {
+    view_label: "Brand Ranking"
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${core_domo_customer_lifetime_data.customer_uuid} = ${core_domo_customers.customer_uuid} ;;
+  }
+
+  join: core_domo_customer_location {
+    view_label: "Customer Location"
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${core_domo_customer_location.customer_uuid} = ${core_domo_customers.customer_uuid} ;;
+  }
+
+  join: domo_brand_ranking {
+    view_label: "Brand Ranking"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${domo_brand_ranking.customer_uuid} = ${core_domo_customers.customer_uuid} ;;
+  }
+
+  join: domo_product_ranking {
+    view_label: "Product Ranking"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${domo_product_ranking.customer_uuid} = ${core_domo_customers.customer_uuid} ;;
+  }
+
+  join: domo_product_type_ranking {
+    view_label: "Product Type Ranking"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${domo_product_type_ranking.customer_uuid} = ${core_domo_customers.customer_uuid} ;;
+  }
+
+  join: domo_sales_channel_ranking {
+    view_label: "Sales Channel Ranking"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${domo_product_type_ranking.customer_uuid} = ${core_domo_customers.customer_uuid} ;;
+  }
+}
+
+explore: agg_domo_tickets {
+  group_label: " Treez Data - DOMO NEW"
+  view_label: "Orders"
+  label: "Orders"
+
+  join: core_domo_customers {
+    view_label: "Customers"
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${agg_domo_tickets.customer_uuid} = ${core_domo_customers.customer_uuid} ;;
+  }
+
+}
