@@ -128,4 +128,5 @@ explore: dim_tickets {
     relationship: one_to_many
     sql_on: ${int_sales_channel_ranking.customer_id} = ${dim_customers.customer_id} ;;
   }
-  }
+
+}
