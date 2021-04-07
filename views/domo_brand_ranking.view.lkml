@@ -30,6 +30,7 @@ view: domo_brand_ranking {
   }
 
   dimension: retail_brand {
+    label: "Product Brand"
     type: string
     sql: ${TABLE}.retail_brand ;;
   }

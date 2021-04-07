@@ -281,7 +281,11 @@ view: core_domo_ticket_items {
     sql: ${total_net_sales} - ${total_cost_without_excise} ;;
   }
 
-
+  measure: count_distinct_customers {
+    type: count_distinct
+    value_format: "0"
+    sql: ${customer_uuid} ;;
+  }
 
 
  }
