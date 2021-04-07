@@ -27,18 +27,61 @@ view: agg_domo_tickets {
     sql: ${TABLE}.customer_uuid ;;
   }
 
-  dimension: date_closed {
-    type: string
+  dimension_group: date_closed {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
     sql: ${TABLE}.date_closed ;;
   }
 
-  dimension: date_time_closed {
-    type: string
+  dimension_group: date_opened {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.date_opened ;;
+  }
+
+  dimension_group: date_time_closed {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.date_time_closed ;;
   }
 
-  dimension: date_time_opened {
-    type: string
+  dimension_group: date_time_opened {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.date_time_opened ;;
   }
 
@@ -70,11 +113,6 @@ view: agg_domo_tickets {
   dimension: net_sales {
     type: number
     sql: ${TABLE}.net_sales ;;
-  }
-
-  dimension: open_date {
-    type: string
-    sql: ${TABLE}.open_date ;;
   }
 
   dimension: quantity {
@@ -175,4 +213,11 @@ view: agg_domo_tickets {
     value_format: "0.00"
     sql: ${quantity} ;;
   }
+
+  measure: total_orders {
+    type: count_distinct
+    value_format: "0"
+    sql: ${ticketid} ;;
+  }
+
 }

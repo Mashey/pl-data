@@ -32,18 +32,61 @@ view: core_domo_ticket_items {
     sql: ${TABLE}.customer_uuid ;;
   }
 
-  dimension: date_closed {
-    type: string
+  dimension_group: date_closed {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
     sql: ${TABLE}.date_closed ;;
   }
 
-  dimension: date_time_closed {
-    type: string
+  dimension_group: date_opened {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.date_opened ;;
+  }
+
+  dimension_group: date_time_closed {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.date_time_closed ;;
   }
 
-  dimension: date_time_opened {
-    type: string
+  dimension_group: date_time_opened {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.date_time_opened ;;
   }
 
@@ -85,11 +128,6 @@ view: core_domo_ticket_items {
   dimension: net_sales {
     type: number
     sql: ${TABLE}.net_sales ;;
-  }
-
-  dimension: open_date {
-    type: string
-    sql: ${TABLE}.open_date ;;
   }
 
   dimension: priceunit {
@@ -163,7 +201,6 @@ view: core_domo_ticket_items {
   }
 
   dimension: ticketlineid {
-    primary_key: yes
     type: string
     sql: ${TABLE}.ticketlineid ;;
   }
@@ -237,7 +274,8 @@ view: core_domo_ticket_items {
 
   measure: total_quantity {
     type: sum
-    value_format: "0.00"
+    value_format: "0"
     sql: ${quantity} ;;
   }
-}
+
+ }
