@@ -275,10 +275,22 @@ view: core_domo_ticket_items {
     sql: ${quantity} ;;
   }
 
-  measure: total_gross_margin{
+  measure: total_gross_profit{
     type: number
     value_format: "$#,##0.00"
     sql: ${total_net_sales} - ${total_cost_without_excise} ;;
+  }
+
+  measure: gross_margin {
+    type: number
+    value_format: "0.0\%"
+    sql: ${total_gross_profit}/${total_net_sales} ;;
+  }
+
+  measure: discount_rate {
+    type: number
+    value_format: "0.0\%"
+    sql: ${total_discounts}/${total_gross_sales} ;;
   }
 
   measure: count_distinct_customers {

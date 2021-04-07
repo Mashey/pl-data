@@ -101,4 +101,10 @@ view: core_domo_customer_lifetime_data {
     value_format: "0.00"
     sql: ${lifetime_visits} ;;
   }
+
+  measure: average_days_aged {
+    type: average
+    value_format: "0.0"
+    sql: ${days_aged} ;;
+  }
 }
