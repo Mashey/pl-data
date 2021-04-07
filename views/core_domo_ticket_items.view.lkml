@@ -248,12 +248,6 @@ view: core_domo_ticket_items {
     sql: ${excise_tax} ;;
   }
 
-  measure: total_gross_margin {
-    type: sum
-    value_format: "$#,##0.00"
-    sql: ${gross_income} ;;
-  }
-
   measure: total_gross_receipts {
     type: sum
     value_format: "$#,##0.00"
@@ -277,5 +271,14 @@ view: core_domo_ticket_items {
     value_format: "0"
     sql: ${quantity} ;;
   }
+
+  measure: total_gross_margin{
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${total_net_sales} - ${total_cost_without_excise} ;;
+  }
+
+
+
 
  }
