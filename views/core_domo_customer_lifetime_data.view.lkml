@@ -28,6 +28,11 @@ view: core_domo_customer_lifetime_data {
     sql: ${TABLE}.customer_visit_frequency ;;
   }
 
+  dimension: percent_outside_visit_frequency {
+    type: number
+    sql: ${TABLE}.percent_outside_visit_frequency ;;
+  }
+
   dimension: days_aged {
     type: number
     sql: ${TABLE}.days_aged ;;

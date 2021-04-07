@@ -283,13 +283,13 @@ view: core_domo_ticket_items {
 
   measure: gross_margin {
     type: number
-    value_format: "0.0\%"
+    value_format_name: percent_2
     sql: ${total_gross_profit}/${total_net_sales} ;;
   }
 
   measure: discount_rate {
     type: number
-    value_format: "0.0\%"
+    value_format_name: percent_2
     sql: ${total_discounts}/${total_gross_sales} ;;
   }
 
