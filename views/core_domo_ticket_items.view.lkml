@@ -151,6 +151,7 @@ view: core_domo_ticket_items {
   }
 
   dimension: productbrand {
+    hidden: yes
     type: string
     sql: ${TABLE}.productbrand ;;
   }
@@ -171,6 +172,7 @@ view: core_domo_ticket_items {
   }
 
   dimension: retail_brand {
+    label: "Product Brand"
     type: string
     sql: ${TABLE}.retail_brand ;;
   }
