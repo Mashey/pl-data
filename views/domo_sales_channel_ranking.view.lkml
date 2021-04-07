@@ -2,9 +2,9 @@ view: domo_sales_channel_ranking {
   sql_table_name: `fivetran-purple-lotus-warehous.dbt.domo_sales_channel_ranking`
     ;;
 
-  dimension: brand_ranking {
+  dimension: sales_channel_ranking {
     type: number
-    sql: ${TABLE}.brand_ranking ;;
+    sql: ${TABLE}.sales_channel_ranking ;;
   }
 
   dimension: customer_uuid {

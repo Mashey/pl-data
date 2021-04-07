@@ -2,9 +2,9 @@ view: domo_product_type_ranking {
   sql_table_name: `fivetran-purple-lotus-warehous.dbt.domo_product_type_ranking`
     ;;
 
-  dimension: brand_ranking {
+  dimension: product_type_ranking {
     type: number
-    sql: ${TABLE}.brand_ranking ;;
+    sql: ${TABLE}.product_type_ranking ;;
   }
 
   dimension: customer_uuid {
