@@ -201,6 +201,7 @@ view: core_domo_ticket_items {
   }
 
   dimension: ticketlineid {
+    primary_key: yes
     type: string
     sql: ${TABLE}.ticketlineid ;;
   }

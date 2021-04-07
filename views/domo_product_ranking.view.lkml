@@ -13,6 +13,8 @@ view: domo_product_ranking {
   }
 
   dimension: pk {
+    primary_key: yes
+    hidden: yes
     type: string
     sql: ${TABLE}.PK ;;
   }

@@ -8,6 +8,7 @@ view: customer_addresses {
   }
 
   dimension: customer_id {
+    primary_key: yes
     type: string
     sql: ${TABLE}.customer_id ;;
   }

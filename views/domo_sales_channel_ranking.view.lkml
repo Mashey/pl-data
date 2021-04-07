@@ -13,6 +13,8 @@ view: domo_sales_channel_ranking {
   }
 
   dimension: pk {
+    primary_key: yes
+    hidden: yes
     type: string
     sql: ${TABLE}.PK ;;
   }
