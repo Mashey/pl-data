@@ -284,19 +284,31 @@ view: core_domo_ticket_items {
   measure: gross_margin {
     type: number
     value_format_name: percent_2
-    sql: ${total_gross_profit}/${total_net_sales} ;;
+    sql: ${total_gross_profit}/nullif(${total_net_sales},0) ;;
   }
 
   measure: discount_rate {
     type: number
     value_format_name: percent_2
-    sql: ${total_discounts}/${total_gross_sales} ;;
+    sql: ${total_discounts}/nullif(${total_gross_sales},0) ;;
   }
 
   measure: count_distinct_customers {
     type: count_distinct
     value_format: "0"
     sql: ${customer_uuid} ;;
+  }
+
+  measure: total_orders {
+    type: count_distinct
+    value_format: "0"
+    sql: ${ticketid} ;;
+  }
+
+  measure: average_order_value {
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${total_net_sales} / nullif(${total_orders},0) ;;
   }
 
 

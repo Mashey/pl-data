@@ -97,6 +97,12 @@ view: core_domo_customers {
     drill_fields: [last_name, first_name]
   }
 
+  measure: total_distinct_customers {
+    type: count_distinct
+    value_format: "0"
+    sql: ${customer_uuid} ;;
+  }
+
   measure: total_reward_balance {
     type: sum
     value_format: "$#,##0.00"
