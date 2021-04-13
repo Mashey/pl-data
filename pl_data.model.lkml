@@ -209,3 +209,29 @@ explore: agg_domo_tickets {
   }
 
 }
+
+explore: order_purchase_affinity {
+ label: "🌿 Item Affinity"
+  view_label: "Item Affinity"
+  group_label: " Treez Data - DOMO NEW"
+
+  always_filter: {
+    filters: {
+      field: affinity_timeframe
+      value: "last 90 days"
+    }
+    filters: {
+      field: order_items_base.product_level
+      #### TO DO: Replace with your most used hierarchy level (defined in the affinity_analysis view)
+      value: "BRAND"
+    }
+  }
+
+  join: order_items_base {}
+
+  join: total_orders {
+    type: cross
+    relationship: many_to_one
+  }
+
+}
