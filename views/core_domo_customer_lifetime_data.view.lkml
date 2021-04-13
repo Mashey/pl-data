@@ -38,13 +38,33 @@ view: core_domo_customer_lifetime_data {
     sql: ${TABLE}.days_aged ;;
   }
 
-  dimension: first_order {
-    type: string
+  dimension_group: first_order {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
     sql: ${TABLE}.first_order ;;
   }
 
-  dimension: last_order {
-    type: string
+  dimension_group: last_order {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
     sql: ${TABLE}.last_order ;;
   }
 
