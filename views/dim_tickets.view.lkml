@@ -22,6 +22,8 @@ view: dim_tickets {
     timeframes: [
       raw,
       time_of_day,
+      hour,
+      hour_of_day,
       date,
       week,
       week_of_year,

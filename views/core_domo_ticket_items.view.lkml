@@ -295,13 +295,13 @@ view: core_domo_ticket_items {
 
   measure: count_distinct_customers {
     type: count_distinct
-    value_format: "0"
+    value_format: "#,##0"
     sql: ${customer_uuid} ;;
   }
 
   measure: total_orders {
     type: count_distinct
-    value_format: "0"
+    value_format: "#,##0"
     sql: ${ticketid} ;;
   }
 
