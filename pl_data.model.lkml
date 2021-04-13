@@ -211,7 +211,7 @@ explore: agg_domo_tickets {
 }
 
 explore: order_purchase_affinity {
- label: "🌿 Item Affinity"
+ label: "Item Affinity"
   view_label: "Item Affinity"
   group_label: " Treez Data - DOMO NEW"
 
