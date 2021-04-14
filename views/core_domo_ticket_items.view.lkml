@@ -269,10 +269,24 @@ view: core_domo_ticket_items {
     sql: ${net_sales} ;;
   }
 
-  measure: total_quantity {
+  measure: total_units_sold_net {
     type: sum
-    value_format: "0"
+    value_format: "#,##0"
     sql: ${quantity} ;;
+  }
+
+  measure: total_units_sold_gross {
+    type: sum
+    value_format: "#,##0"
+    sql: ${quantity} ;;
+    filters: [type: "SALE"]
+  }
+
+  measure: total_units_returned {
+    type: sum
+    value_format: "#,##0"
+    sql: ${quantity} * -1 ;;
+    filters: [type: "RETURN"]
   }
 
   measure: total_gross_profit{
@@ -310,6 +324,7 @@ view: core_domo_ticket_items {
     value_format: "$#,##0.00"
     sql: ${total_net_sales} / nullif(${total_orders},0) ;;
   }
+
 
 
  }

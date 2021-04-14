@@ -111,6 +111,13 @@ explore: core_domo_ticket_items {
     sql_on: ${core_domo_customers.customer_uuid} = ${core_domo_ticket_items.customer_uuid} ;;
   }
 
+  join: core_domo_customer_location {
+    view_label: "Customer Location"
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${core_domo_customer_location.customer_uuid} = ${core_domo_customers.customer_uuid} ;;
+  }
+
   join: core_domo_customer_lifetime_data {
     view_label: "Customer Lifetime Data"
     type: left_outer

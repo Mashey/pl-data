@@ -103,26 +103,26 @@ view: core_domo_customer_lifetime_data {
     drill_fields: []
   }
 
-  measure: total_lifetime_gross_profit{
-    type: sum
+  measure: average_lifetime_gross_profit{
+    type: average
     value_format: "$#,##0.00"
     sql: ${lifetime_gross_profit} ;;
   }
 
-  measure: total_lifetime_purchases{
-    type: sum
+  measure: average_lifetime_purchases{
+    type: average
     value_format: "0.00"
     sql: ${lifetime_purchases} ;;
   }
 
-  measure: total_lifetime_revenue{
-    type: sum
+  measure: average_lifetime_revenue{
+    type: average
     value_format: "$#,##0.00"
     sql: ${lifetime_revenue} ;;
   }
 
-  measure: total_lifetime_visits {
-    type: sum
+  measure: average_lifetime_visits {
+    type: average
     value_format: "0.00"
     sql: ${lifetime_visits} ;;
   }

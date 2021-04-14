@@ -99,7 +99,7 @@ view: core_domo_customers {
 
   measure: total_distinct_customers {
     type: count_distinct
-    value_format: "0"
+    value_format: "#,##0"
     sql: ${customer_uuid} ;;
   }
 
