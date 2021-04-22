@@ -34,8 +34,11 @@ view: agg_domo_tickets {
       date,
       week,
       month,
+      month_name,
+      day_of_month,
       quarter,
-      year
+      year,
+      day_of_year
     ]
     convert_tz: no
     datatype: date

@@ -325,6 +325,12 @@ view: core_domo_ticket_items {
     sql: ${total_net_sales} / nullif(${total_orders},0) ;;
   }
 
+  measure: return_rate {
+    type: number
+    value_format_name: percent_1
+    sql: ${total_units_returned} / nullif(${total_units_sold_gross},0) ;;
+  }
+
 
 
  }

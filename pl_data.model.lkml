@@ -1,7 +1,7 @@
 connection: "plpc"
 case_sensitive: no
 
-include: "/views/*.lkml"
+include: "/**/*.view.lkml"
 
 explore: ticket_items {
   hidden: yes
@@ -103,6 +103,12 @@ explore: core_domo_ticket_items {
   view_label: "Order Items"
   label: "Order Items"
 
+  join: dim_domo_current_inventory {
+    view_label: "Current Inventory"
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${dim_domo_current_inventory.product_id} = ${core_domo_ticket_items.product_id} ;;
+  }
 
   join: core_domo_customers {
     view_label: "Customers"
@@ -217,6 +223,12 @@ explore: agg_domo_tickets {
 
 }
 
+explore: core_domo_inventory {
+  label: "Inventory"
+    view_label: "Inventory"
+    group_label: " Treez Data - DOMO NEW"
+}
+
 explore: order_purchase_affinity {
  label: "Item Affinity"
   view_label: "Item Affinity"
@@ -241,4 +253,4 @@ explore: order_purchase_affinity {
     relationship: many_to_one
   }
 
-}
+  }
