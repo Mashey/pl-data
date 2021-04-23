@@ -2,6 +2,13 @@ view: core_domo_inventory {
   sql_table_name: `fivetran-purple-lotus-warehous.dbt.core_domo_inventory`
     ;;
 
+  dimension: pk {
+    hidden: yes
+    primary_key: yes
+    type: string
+    sql: ${TABLE}.pk ;;
+  }
+
   dimension: accepted_date {
     type: string
     sql: ${TABLE}.accepted_date ;;
