@@ -251,6 +251,18 @@ view: core_domo_ticket_items {
     sql: ${excise_tax} ;;
   }
 
+  measure: total_sales_tax {
+    type: sum
+    value_format: "$#,##0.00"
+    sql: ${sales_tax} ;;
+  }
+
+  measure: total_cbt_tax {
+    type: sum
+    value_format: "$#,##0.00"
+    sql: ${cbt_tax} ;;
+  }
+
   measure: total_gross_receipts {
     type: sum
     value_format: "$#,##0.00"
