@@ -7,6 +7,11 @@ view: dim_domo_current_inventory {
     sql: ${TABLE}.available_units ;;
   }
 
+  dimension: avg_days_aged {
+    type: number
+    sql: ${TABLE}.avg_days_aged ;;
+  }
+
   dimension: packed_and_ready_units {
     type: number
     sql: ${TABLE}.packed_and_ready_units ;;
@@ -107,6 +112,12 @@ view: dim_domo_current_inventory {
     type: sum
     value_format: "$#,##0.00"
     sql: ${total_cost_with_excise} ;;
+  }
+
+  measure: average_days_aged {
+    type: average
+    value_format: "#,##0"
+    sql: ${avg_days_aged} ;;
   }
 
 }
