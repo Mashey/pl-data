@@ -86,6 +86,11 @@ view: core_domo_inventory {
     sql: ${TABLE}.reserved_units ;;
   }
 
+  dimension: state_tracking_id {
+    type: string
+    sql: ${TABLE}.state_tracking_id ;;
+  }
+
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;

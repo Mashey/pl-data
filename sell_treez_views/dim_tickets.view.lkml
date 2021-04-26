@@ -171,4 +171,10 @@ view: dim_tickets {
     type: sum
     sql: ${reward_points_used}/100 ;;
   }
+
+  measure: total_discounts {
+    value_format: "$#,##0.00"
+    type: sum
+    sql: ${discount_total} ;;
+  }
 }
