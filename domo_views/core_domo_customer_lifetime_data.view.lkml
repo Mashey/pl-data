@@ -132,4 +132,10 @@ view: core_domo_customer_lifetime_data {
     value_format: "0.0"
     sql: ${days_aged} ;;
   }
+
+  measure: distinct_customers {
+    type: count_distinct
+    value_format: "0"
+    sql: ${customer_uuid} ;;
+  }
 }

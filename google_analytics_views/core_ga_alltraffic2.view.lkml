@@ -103,4 +103,16 @@ view: core_ga_alltraffic2 {
     value_format: "0.0"
     sql: ${total_pageviews}/nullif(${total_sessions},0) ;;
   }
+
+  measure: total_transactions_revenue {
+    type: sum
+    value_format: "$#,##0.00"
+    sql: ${ga_transactionrevenue} ;;
+  }
+
+  measure: total_transactions {
+    type: sum
+    value_format: "#,##0.00"
+    sql: ${ga_transactions} ;;
+  }
 }

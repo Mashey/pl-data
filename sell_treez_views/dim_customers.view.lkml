@@ -165,6 +165,7 @@ view: dim_customers {
     type: count_distinct
     value_format: "0"
     sql: ${customer_id} ;;
+    drill_fields: [customer_id, first_order_date]
   }
 
   measure: average_lifetime_value_revenue {

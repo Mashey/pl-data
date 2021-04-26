@@ -156,7 +156,7 @@ explore: core_domo_ticket_items {
     view_label: "Sales Channel Ranking"
     type: left_outer
     relationship: one_to_many
-    sql_on: ${domo_product_type_ranking.customer_uuid} = ${core_domo_ticket_items.customer_uuid} ;;
+    sql_on: ${domo_product_type_ranking.customer_uuid} = ${core_domo_customers.customer_uuid} ;;
   }
 
 }

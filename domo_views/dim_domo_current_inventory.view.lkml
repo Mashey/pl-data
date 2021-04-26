@@ -73,6 +73,11 @@ view: dim_domo_current_inventory {
     sql: ${TABLE}.weight ;;
 
   }
+
+  dimension: days_aged_weighted{
+    type: number
+    sql: ${TABLE}.days_aged_weighted ;;
+  }
   measure: count {
     type: count
     drill_fields: [productname]
@@ -118,6 +123,12 @@ view: dim_domo_current_inventory {
     type: average
     value_format: "#,##0"
     sql: ${avg_days_aged} ;;
+  }
+
+  measure: average_days_aged_weighted {
+    type: average
+    value_format: "#,##0"
+    sql: ${days_aged_weighted} ;;
   }
 
 }

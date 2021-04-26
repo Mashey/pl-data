@@ -34,6 +34,13 @@ view: core_domo_inventory {
     sql: ${TABLE}.days_aged ;;
   }
 
+  dimension: days_aged_tiers {
+    type: tier
+    tiers: [1,31,61,91,121]
+    style: integer
+    sql: ${days_aged} ;;
+  }
+
   dimension: excise_tax_per_unit {
     type: number
     sql: ${TABLE}.excise_tax_per_unit ;;
@@ -94,9 +101,19 @@ view: core_domo_inventory {
     sql: ${TABLE}.total_cost_with_excise ;;
   }
 
+  dimension: total_units {
+    type: number
+    sql: ${available_units} + ${reserved_units} + ${packed_and_ready_units} ;;
+  }
+
   dimension: unit_of_measure {
     type: string
     sql: ${TABLE}.unit_of_measure ;;
+  }
+
+  dimension: weighted_days_aged {
+    type: number
+    sql: ${TABLE}.weighted_days_aged ;;
   }
 
   measure: count {
@@ -122,6 +139,12 @@ view: core_domo_inventory {
     sql: ${packed_and_ready_units} ;;
   }
 
+  measure: sum_total_units {
+    type: sum
+    value_format: "#,##0"
+    sql: ${total_units} ;;
+  }
+
   measure: total_inventory_cost {
     type: sum
     value_format: "$#,##0.00"
@@ -138,6 +161,12 @@ view: core_domo_inventory {
     type: average
     value_format: "#,##0"
     sql: ${days_aged} ;;
+  }
+
+  measure: average_weighted_days_aged{
+    type: average
+    value_format: "#,##0"
+    sql: ${weighted_days_aged} ;;
   }
 
 

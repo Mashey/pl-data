@@ -19,9 +19,9 @@ view: domo_sales_channel_ranking {
     sql: ${TABLE}.PK ;;
   }
 
-  dimension: quantity {
+  dimension: ticket_count {
     type: number
-    sql: ${TABLE}.quantity ;;
+    sql: ${TABLE}.ticket_count ;;
   }
 
   dimension: ticket_type {
@@ -34,9 +34,15 @@ view: domo_sales_channel_ranking {
     drill_fields: []
   }
 
-  measure: total_quantity {
+  measure: total_ticket_count {
     type: sum
     value_format: "0.00"
-    sql: ${quantity} ;;
+    sql: ${ticket_count} ;;
+  }
+
+  measure: distinct_customers {
+    type: count_distinct
+    value_format: "0.00"
+    sql: ${customer_uuid} ;;
   }
 }
