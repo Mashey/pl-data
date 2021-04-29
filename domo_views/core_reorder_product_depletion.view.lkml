@@ -52,8 +52,8 @@ view: core_reorder_product_depletion {
       dim_domo_current_inventory.total_cost,
       dim_domo_current_inventory.average_days_aged_weighted,
       units_sold_daily_depletion_7,
-      days_remaining_d7,
       units_sold_daily_depletion_30,
+      days_remaining_d7,
       days_remaining_d30
     ]
   }
