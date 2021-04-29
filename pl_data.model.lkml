@@ -248,6 +248,13 @@ explore: core_domo_inventory {
     relationship: one_to_many
     sql_on: ${dim_domo_inventory.product_id} = ${core_domo_ticket_items.product_id} ;;
   }
+
+  join: core_reorder_product_depletion {
+    view_label: "Reorder"
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${core_reorder_product_depletion.product_id} = ${core_domo_inventory.product_id} ;;
+  }
 }
 
 

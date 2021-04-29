@@ -60,7 +60,7 @@ view: dim_domo_current_inventory {
 
   dimension: total_units {
     type: number
-    sql: ${available_units} + ${packed_and_ready_units} + ${reserved_units} ;;
+    sql: ${TABLE}.total_units ;;
   }
 
   dimension: unit_price {

@@ -157,8 +157,8 @@ view: dim_customers {
 
   measure: total_rewards_balance {
     type: sum
-    value_format: "0.0"
-    sql: ${rewards_balance} ;;
+    value_format: "$#,##0.00"
+    sql: ${rewards_balance}/100 ;;
   }
 
   measure: count_distinct_customers {

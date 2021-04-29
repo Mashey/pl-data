@@ -117,6 +117,7 @@ view: core_domo_inventory {
   }
 
   dimension: weighted_days_aged {
+    hidden: yes
     type: number
     sql: ${TABLE}.weighted_days_aged ;;
   }
@@ -169,6 +170,7 @@ view: core_domo_inventory {
   }
 
   measure: average_weighted_days_aged{
+    hidden: yes
     type: average
     value_format: "#,##0"
     sql: ${weighted_days_aged} ;;

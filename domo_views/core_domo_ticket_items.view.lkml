@@ -343,6 +343,12 @@ view: core_domo_ticket_items {
     sql: ${total_units_returned} / nullif(${total_units_sold_gross},0) ;;
   }
 
+  measure: total_units_per_transaction {
+    type: number
+    value_format: "0.0"
+    sql: ${total_units_sold_net}/nullif(${total_orders},0) ;;
+  }
+
 
 
  }
