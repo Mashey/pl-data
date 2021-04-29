@@ -349,6 +349,12 @@ view: core_domo_ticket_items {
     sql: ${total_units_sold_net}/nullif(${total_orders},0) ;;
   }
 
+  measure: revenue_per_unit{
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${total_net_sales}/nullif(${total_units_sold_net},0) ;;
+  }
+
 
 
  }
