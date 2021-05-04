@@ -26,6 +26,7 @@ view: dim_domo_current_inventory {
   dimension: productbrand {
     type: string
     sql: ${TABLE}.productbrand ;;
+    drill_fields: [productname]
   }
 
   dimension: productname {
@@ -46,6 +47,11 @@ view: dim_domo_current_inventory {
   dimension: shelf {
     type: string
     sql: ${TABLE}.shelf ;;
+    drill_fields:
+    [productname,
+      productbrand,
+      weight,
+      core_domo_ticket_items.classification]
   }
 
   dimension: total_cost {
@@ -129,6 +135,20 @@ view: dim_domo_current_inventory {
     type: average
     value_format: "#,##0"
     sql: ${days_aged_weighted} ;;
+  }
+
+  measure: sku_count {
+    description: "Sku count by unique name/brand"
+    type: count_distinct
+    value_format: "0.0"
+    sql: CONCAT(${productname},${productbrand},${product_id}) ;;
+  }
+
+  measure: brand_count {
+    description: "Count of all brands"
+    type: count_distinct
+    value_format: "0.0"
+    sql: ${productbrand} ;;
   }
 
 }

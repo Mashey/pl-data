@@ -139,6 +139,11 @@ view: dim_customers {
     sql: ${TABLE}.signup_date ;;
   }
 
+  dimension: first_order_channel {
+    type: string
+    sql: ${TABLE}.first_sales_channel ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [last_name, first_name]

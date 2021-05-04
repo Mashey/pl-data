@@ -26,6 +26,7 @@ view: dim_domo_inventory {
   dimension: productbrand {
     type: string
     sql: ${TABLE}.productbrand ;;
+    drill_fields: [productname]
   }
 
   dimension: productname {
@@ -46,6 +47,11 @@ view: dim_domo_inventory {
   dimension: shelf {
     type: string
     sql: ${TABLE}.shelf ;;
+    drill_fields:
+      [productname,
+      productbrand,
+      weight,
+      core_domo_ticket_items.classification]
   }
 
   dimension: total_cost {
@@ -113,4 +119,5 @@ view: dim_domo_inventory {
     value_format: "$#,##0.00"
     sql: ${total_cost_with_excise} ;;
   }
+
 }

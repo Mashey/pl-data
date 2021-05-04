@@ -12,6 +12,8 @@ view: core_domo_customers {
     sql: ${TABLE}.age_group ;;
   }
 
+
+
   dimension_group: customer_signup {
     type: time
     timeframes: [
@@ -30,6 +32,7 @@ view: core_domo_customers {
     type: string
     sql: ${TABLE}.customer_source ;;
   }
+
 
   dimension: customer_status {
     type: string
@@ -101,6 +104,7 @@ view: core_domo_customers {
     type: count_distinct
     value_format: "#,##0"
     sql: ${customer_uuid} ;;
+    drill_fields: [customer_uuid, email, gender, age_group]
   }
 
   measure: total_reward_balance {

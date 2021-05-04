@@ -105,24 +105,28 @@ view: core_reorder_product_depletion {
   }
 
   measure: sum_units_sold_prior30 {
+    group_label: "Last 30 Days"
     type: sum
     value_format: "#,##0.00"
     sql: ${units_sold_prior_30} ;;
   }
 
   measure: sum_units_sold_prior7 {
+    group_label: "Last 7 Days"
     type: sum
     value_format: "#,##0.00"
     sql: ${units_sold_prior_7} ;;
   }
 
   measure: sum_units_sold_prior7to14 {
+    group_label: "Week Prior"
     type: sum
     value_format: "#,##0.00"
     sql: ${units_sold_prior_7to14} ;;
   }
 
   measure: units_sold_daily_depletion_7 {
+    group_label: "Last 7 Days"
     type: sum
     label: "Daily Depletion Rate_7"
     description: "Daily Depletion Rate based on units sold prior 7 days"
@@ -131,104 +135,144 @@ view: core_reorder_product_depletion {
   }
 
   measure: units_sold_daily_depletion_30 {
+    group_label: "Last 30 Days"
     type: sum
-    label: "Daily Depletion Rate_30"
+    label: "Daily Depletion Rate_30d"
     description: "Daily Depletion Rate based on units sold prior 30 days"
     value_format: "#,##0.00"
     sql: COALESCE(${units_sold_prior_30} / nullif(${days_of_sales_prior30},0),0) ;;
   }
 
   measure: units_sold_daily_depletion_7to14 {
+    group_label: "Week Prior"
     type: sum
-    label: "Daily Depletion Rate_7to14"
+    label: "Daily Depletion Rate_7to14d"
     description: "Daily Depletion Rate based on units sold prior 7-14 days"
     value_format: "#,##0.00"
     sql: COALESCE(${units_sold_prior_7to14} / nullif(${days_of_sales_prior7to14},0),0) ;;
   }
 
   measure: days_remaining_d7 {
+    group_label: "Last 7 Days"
     type: number
     sql: floor(coalesce(${sum_remaining_units} / nullif(${units_sold_daily_depletion_7},0),0)) ;;
   }
 
   measure: days_remaining_d30 {
+    group_label: "Last 30 Days"
     type: number
     sql: floor(coalesce(${sum_remaining_units} / nullif(${units_sold_daily_depletion_30},0),0)) ;;
   }
 
   measure: days_remaining_d7to14 {
+    group_label: "Week Prior"
     type: number
     sql: floor(coalesce(${sum_remaining_units} / nullif(${units_sold_daily_depletion_7to14},0),0)) ;;
   }
 
+  measure: weeks_remaining_d7to14 {
+    group_label: "Week Prior"
+    type: number
+    value_format: "0.0"
+    sql: coalesce(${days_remaining_d7to14} / 7,0) ;;
+  }
+
+  measure: weeks_remaining_d7 {
+    group_label: "Last 7 Days"
+    type: number
+    value_format: "0.0"
+    sql: coalesce(${days_remaining_d7} / 7,0) ;;
+  }
+
+  measure: weeks_remaining_d30{
+    group_label: "Last 30 Days"
+    type: number
+    value_format: "0.0"
+    sql: coalesce(${days_remaining_d30} / 7,0) ;;
+  }
+
   measure: total_gross_profit_prior7 {
+    group_label: "Last 7 Days"
     type: sum
+    value_format: "$#,##0.00"
     sql: ${gross_profit_prior7} ;;
   }
 
   measure: total_gross_profit_prior7to14 {
+    group_label: "Week Prior"
     type: sum
+    value_format: "$#,##0.00"
     sql: ${gross_profit_prior7to14} ;;
   }
 
   measure: total_gross_profit_prior30 {
+    group_label: "Last 30 Days"
     type: sum
+    value_format: "$#,##0.00"
     sql: ${gross_profit_prior30} ;;
   }
 
   measure: total_sales_d30 {
+    group_label: "Last 30 Days"
     type: sum
-    value_format: "#,##0.00"
+    value_format: "$#,##0.00"
     sql: ${sales_prior_30} ;;
   }
 
   measure: total_sales_d7to14 {
+    group_label: "Week Prior"
     type: sum
-    value_format: "#,##0.00"
+    value_format: "$#,##0.00"
     sql: ${sales_prior_7to14} ;;
   }
 
   measure: total_sales_d7 {
+    group_label: "Last 7 Days"
     type: sum
-    value_format: "#,##0.00"
+    value_format: "$#,##0.00"
     sql: ${sales_prior_7} ;;
   }
 
   measure: total_gross_margin_d7 {
+    group_label: "Last 7 Days"
     type: number
-    value_format: "0.00\%"
+    value_format_name: percent_1
     sql: ${total_gross_profit_prior7}/nullif(${total_sales_d7},0) ;;
   }
 
   measure: total_gross_margin_d7to14 {
+    group_label: "Week Prior"
     type: number
-    value_format: "0.00\%"
+    value_format_name: percent_1
     sql: ${total_gross_profit_prior7to14}/nullif(${total_sales_d7to14},0) ;;
   }
 
   measure: total_gross_margin_d30 {
+    group_label: "Last 30 Days"
     type: number
-    value_format: "0.00\%"
+    value_format_name: percent_1
     sql: ${total_gross_profit_prior30}/nullif(${total_sales_d30},0) ;;
   }
 
   measure: revenue_per_unit_d7 {
+    group_label: "Last 7 Days"
     type: number
     value_format: "#,##0.00"
     sql: ${total_sales_d7}/nullif(${sum_units_sold_prior7},0) ;;
  }
 
   measure: revenue_per_unit_d7to14 {
+    group_label: "Week Prior"
     type: number
     value_format: "#,##0.00"
     sql: ${total_sales_d7to14}/nullif(${sum_units_sold_prior7to14},0) ;;
   }
 
   measure: revenue_per_unit_d30 {
+    group_label: "Last 30 Days"
     type: number
     value_format: "#,##0.00"
     sql: ${total_sales_d30}/nullif(${sum_units_sold_prior30},0) ;;
   }
-
 
 }

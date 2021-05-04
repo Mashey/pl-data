@@ -177,6 +177,20 @@ view: core_domo_ticket_items {
     sql: ${TABLE}.retail_brand ;;
   }
 
+  filter: brand_select {
+    suggest_dimension: retail_brand
+  }
+
+  dimension: brand_comparitor {
+    type: string
+    sql: CASE
+          WHEN {% condition brand_select %} ${retail_brand} {% endcondition %}
+            THEN ${retail_brand}
+          ELSE 'Rest of Population'
+          END ;;
+  }
+
+
   dimension: returns_amount {
     type: number
     sql: ${TABLE}.returns_amount ;;

@@ -142,14 +142,14 @@ explore: core_domo_ticket_items {
     view_label: "Product Ranking"
     type: left_outer
     relationship: one_to_many
-    sql_on: ${domo_product_ranking.customer_uuid} = ${core_domo_ticket_items.customer_uuid} ;;
+    sql_on: ${domo_product_ranking.customer_uuid} = ${core_domo_customers.customer_uuid} ;;
   }
 
   join: domo_product_type_ranking {
     view_label: "Product Type Ranking"
     type: left_outer
     relationship: one_to_many
-    sql_on: ${domo_product_type_ranking.customer_uuid} = ${core_domo_ticket_items.customer_uuid} ;;
+    sql_on: ${domo_product_type_ranking.customer_uuid} = ${core_domo_customers.customer_uuid} ;;
   }
 
   join: domo_sales_channel_ranking {
@@ -157,6 +157,13 @@ explore: core_domo_ticket_items {
     type: left_outer
     relationship: one_to_many
     sql_on: ${domo_product_type_ranking.customer_uuid} = ${core_domo_customers.customer_uuid} ;;
+  }
+
+  join: ticket_rank_by_sales {
+    view_label: "Ticket Rank By Sales"
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${ticket_rank_by_sales.ticketid} = ${core_domo_ticket_items.ticketid} AND ${ticket_rank_by_sales.customer_uuid} = ${core_domo_ticket_items.customer_uuid} ;;
   }
 
 }
