@@ -12,6 +12,15 @@ view: core_domo_customers {
     sql: ${TABLE}.age_group ;;
   }
 
+  dimension: age_group_tier {
+    type: tier
+    tiers: [21,36]
+    style: integer
+    sql: CASE WHEN ${age} <> 'N/A' THEN CAST(${age} as int64)
+      ELSE 0 END ;;
+  }
+
+
 
 
   dimension_group: customer_signup {
