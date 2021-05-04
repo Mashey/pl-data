@@ -15,6 +15,7 @@ view: core_domo_ticket_items {
   dimension: classification {
     type: string
     sql: ${TABLE}.classification ;;
+    drill_fields: [dim_domo_current_inventory.productbrand, dim_domo_current_inventory.productname]
   }
 
   dimension: cost {
@@ -369,6 +370,11 @@ view: core_domo_ticket_items {
     sql: ${total_net_sales}/nullif(${total_units_sold_net},0) ;;
   }
 
+  measure: total_cost_with_excise {
+    type: sum
+    value_format: "$#,##0.00"
+    sql: ${cost} ;;
+  }
 
 
  }

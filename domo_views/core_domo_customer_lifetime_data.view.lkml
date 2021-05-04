@@ -138,4 +138,10 @@ view: core_domo_customer_lifetime_data {
     value_format: "0"
     sql: ${customer_uuid} ;;
   }
+
+  measure: average_order_value_lifetime {
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${average_lifetime_revenue}/nullif(${average_lifetime_purchases},0) ;;
+  }
 }
