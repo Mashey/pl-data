@@ -25,11 +25,13 @@ view: core_domo_customer_lifetime_data {
 
   dimension: customer_visit_frequency {
     type: number
+    value_format: "0.0"
     sql: ${TABLE}.customer_visit_frequency ;;
   }
 
   dimension: percent_outside_visit_frequency {
     type: number
+    value_format_name: percent_2
     sql: ${TABLE}.percent_outside_visit_frequency ;;
   }
 
