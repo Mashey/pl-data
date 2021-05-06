@@ -37,11 +37,17 @@ view: core_domo_ticket_items {
     type: time
     timeframes: [
       raw,
+      time_of_day,
+      hour_of_day,
       date,
+      day_of_month,
       week,
       month,
+      month_name,
+      month_num,
       quarter,
-      year
+      year,
+      day_of_year
     ]
     convert_tz: no
     datatype: date
