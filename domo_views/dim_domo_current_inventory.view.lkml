@@ -26,7 +26,7 @@ view: dim_domo_current_inventory {
   dimension: productbrand {
     type: string
     sql: ${TABLE}.productbrand ;;
-    drill_fields: [productname]
+    drill_fields: [productname, weight]
   }
 
   dimension: productname {
@@ -77,6 +77,7 @@ view: dim_domo_current_inventory {
   dimension: weight {
     type: number
     sql: ${TABLE}.weight ;;
+    drill_fields: [productname]
 
   }
 

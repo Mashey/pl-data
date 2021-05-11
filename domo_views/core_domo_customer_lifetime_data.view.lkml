@@ -61,6 +61,12 @@ view: core_domo_customer_lifetime_data {
     sql: ${TABLE}.first_order ;;
   }
 
+  dimension: first_order_sales_channel {
+    label: "Acquision Channel"
+    type: string
+    sql: ${TABLE}.first_order_sales_channel ;;
+  }
+
   dimension_group: last_order {
     type: time
     timeframes: [
