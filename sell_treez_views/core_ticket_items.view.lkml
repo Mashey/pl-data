@@ -1,6 +1,7 @@
-view: ticket_items {
-  sql_table_name: `fivetran-purple-lotus-warehous.dbt.ticket_items`
+view: core_ticket_items {
+  sql_table_name: `fivetran-purple-lotus-warehous.dbt.core_ticket_items`
     ;;
+
 
   dimension_group: date_closed {
     type: time
@@ -16,9 +17,20 @@ view: ticket_items {
     sql: ${TABLE}.date_closed ;;
   }
 
-  dimension: discounts {
-    type: number
-    sql: ${TABLE}.discounts ;;
+
+  dimension: inventory_batch_id {
+    type: string
+    sql: ${TABLE}.inventory_batch_id ;;
+  }
+
+  dimension: inventory_id {
+    type: string
+    sql: ${TABLE}.inventory_id ;;
+  }
+
+  dimension: inventory_type {
+    type: string
+    sql: ${TABLE}.inventory_type ;;
   }
 
   dimension_group: last_updated {
@@ -35,16 +47,19 @@ view: ticket_items {
     sql: ${TABLE}.last_updated_at ;;
   }
 
-  dimension: pk {
-    primary_key: yes
-    hidden: yes
+  dimension: location_name {
     type: string
-    sql: ${TABLE}.PK ;;
+    sql: ${TABLE}.location_name ;;
   }
 
   dimension: price_sell {
     type: number
     sql: ${TABLE}.price_sell ;;
+  }
+
+  dimension: price_total {
+    type: number
+    sql: ${TABLE}.price_total ;;
   }
 
   dimension: product_brand {
@@ -77,9 +92,9 @@ view: ticket_items {
     sql: ${TABLE}.quantity ;;
   }
 
-  dimension: sell_price {
-    type: number
-    sql: ${TABLE}.sell_price ;;
+  dimension: size_id {
+    type: string
+    sql: ${TABLE}.size_id ;;
   }
 
   dimension: ticket_id {
@@ -89,12 +104,12 @@ view: ticket_items {
 
   measure: count {
     type: count
-    drill_fields: [product_name]
+    drill_fields: [product_name, location_name]
   }
 
-  measure: total_quantity {
+  measure: total_units_sold_net {
     type: sum
-    value_format: "0.0"
-    sql: ${quantity}  ;;
+    sql: ${quantity} ;;
   }
+
 }

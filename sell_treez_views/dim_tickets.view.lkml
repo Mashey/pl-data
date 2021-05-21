@@ -132,7 +132,7 @@ view: dim_tickets {
     type: sum
     sql: ${sub_total} ;;
     value_format_name: usd
-  }
+ }
 
   measure: gross_receipts {
     type: sum

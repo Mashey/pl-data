@@ -85,6 +85,7 @@ view: core_reorder_product_depletion {
   }
 
   measure: sum_remaining_units {
+    label: "Remaining Units"
     type: sum
     value_format: "#,##0.00"
     sql: ${remaining_units} ;;
@@ -105,6 +106,7 @@ view: core_reorder_product_depletion {
   }
 
   measure: sum_units_sold_prior30 {
+    label: "Units Sold Last 30 Days"
     group_label: "Last 30 Days"
     type: sum
     value_format: "#,##0.00"
@@ -112,6 +114,7 @@ view: core_reorder_product_depletion {
   }
 
   measure: sum_units_sold_prior7 {
+    label: "Units Sold Last 7 Days"
     group_label: "Last 7 Days"
     type: sum
     value_format: "#,##0.00"
@@ -119,6 +122,7 @@ view: core_reorder_product_depletion {
   }
 
   measure: sum_units_sold_prior7to14 {
+    label: "Units Sold Week Prior"
     group_label: "Week Prior"
     type: sum
     value_format: "#,##0.00"
@@ -128,49 +132,53 @@ view: core_reorder_product_depletion {
   measure: units_sold_daily_depletion_7 {
     group_label: "Last 7 Days"
     type: sum
-    label: "Daily Depletion Rate_7"
+    label: "Units Sold Daily Depletion Last 7 Days"
     description: "Daily Depletion Rate based on units sold prior 7 days"
     value_format: "#,##0.00"
-    sql: COALESCE(${units_sold_prior_7} / nullif(${days_of_sales_prior7},0),0) ;;
+    sql: COALESCE(${units_sold_prior_7}/ 7,0) ;;
   }
 
   measure: units_sold_daily_depletion_30 {
+    label: "Units Sold Daily Depletion Last 30 Days"
     group_label: "Last 30 Days"
     type: sum
-    label: "Daily Depletion Rate_30d"
     description: "Daily Depletion Rate based on units sold prior 30 days"
     value_format: "#,##0.00"
-    sql: COALESCE(${units_sold_prior_30} / nullif(${days_of_sales_prior30},0),0) ;;
+    sql: COALESCE(${units_sold_prior_30} / 7,0) ;;
   }
 
   measure: units_sold_daily_depletion_7to14 {
+    label: "Units Sold Daily Depletion Week Prior"
     group_label: "Week Prior"
     type: sum
-    label: "Daily Depletion Rate_7to14d"
     description: "Daily Depletion Rate based on units sold prior 7-14 days"
     value_format: "#,##0.00"
-    sql: COALESCE(${units_sold_prior_7to14} / nullif(${days_of_sales_prior7to14},0),0) ;;
+    sql: COALESCE(${units_sold_prior_7to14} / 7,0) ;;
   }
 
   measure: days_remaining_d7 {
+    label: "Days Remaining Last 7 Days"
     group_label: "Last 7 Days"
     type: number
     sql: floor(coalesce(${sum_remaining_units} / nullif(${units_sold_daily_depletion_7},0),0)) ;;
   }
 
   measure: days_remaining_d30 {
+    label: "Days Remaining Last 30 Days"
     group_label: "Last 30 Days"
     type: number
     sql: floor(coalesce(${sum_remaining_units} / nullif(${units_sold_daily_depletion_30},0),0)) ;;
   }
 
   measure: days_remaining_d7to14 {
+    label: "Days Remaining Week Prior"
     group_label: "Week Prior"
     type: number
     sql: floor(coalesce(${sum_remaining_units} / nullif(${units_sold_daily_depletion_7to14},0),0)) ;;
   }
 
   measure: weeks_remaining_d7to14 {
+    label: "Weeks Remaining Week Prior"
     group_label: "Week Prior"
     type: number
     value_format: "0.0"
@@ -178,6 +186,7 @@ view: core_reorder_product_depletion {
   }
 
   measure: weeks_remaining_d7 {
+    label: "Weeks Remaining Last 7 Days"
     group_label: "Last 7 Days"
     type: number
     value_format: "0.0"
@@ -185,6 +194,7 @@ view: core_reorder_product_depletion {
   }
 
   measure: weeks_remaining_d30{
+    label: "Weeks Remaining Last 30 Days"
     group_label: "Last 30 Days"
     type: number
     value_format: "0.0"
@@ -192,6 +202,7 @@ view: core_reorder_product_depletion {
   }
 
   measure: total_gross_profit_prior7 {
+    label: "$ Gross Profit Last 7 Days"
     group_label: "Last 7 Days"
     type: sum
     value_format: "$#,##0.00"
@@ -199,6 +210,7 @@ view: core_reorder_product_depletion {
   }
 
   measure: total_gross_profit_prior7to14 {
+    label: "$ Gross Profit Week Prior"
     group_label: "Week Prior"
     type: sum
     value_format: "$#,##0.00"
@@ -206,6 +218,7 @@ view: core_reorder_product_depletion {
   }
 
   measure: total_gross_profit_prior30 {
+    label: "$ Gross Profit Last 30 Days"
     group_label: "Last 30 Days"
     type: sum
     value_format: "$#,##0.00"
@@ -213,6 +226,7 @@ view: core_reorder_product_depletion {
   }
 
   measure: total_sales_d30 {
+    label: "$ Sold Last 30 Days"
     group_label: "Last 30 Days"
     type: sum
     value_format: "$#,##0.00"
@@ -220,6 +234,7 @@ view: core_reorder_product_depletion {
   }
 
   measure: total_sales_d7to14 {
+    label: "$ Sold Week Prior"
     group_label: "Week Prior"
     type: sum
     value_format: "$#,##0.00"
@@ -227,6 +242,7 @@ view: core_reorder_product_depletion {
   }
 
   measure: total_sales_d7 {
+    label: "$ Sold Last 7 Days"
     group_label: "Last 7 Days"
     type: sum
     value_format: "$#,##0.00"
@@ -234,6 +250,7 @@ view: core_reorder_product_depletion {
   }
 
   measure: total_gross_margin_d7 {
+    label: "Gross Margin Prior 7 Days"
     group_label: "Last 7 Days"
     type: number
     value_format_name: percent_1
@@ -241,6 +258,7 @@ view: core_reorder_product_depletion {
   }
 
   measure: total_gross_margin_d7to14 {
+    label: "Gross Margin Week Prior"
     group_label: "Week Prior"
     type: number
     value_format_name: percent_1
@@ -248,6 +266,7 @@ view: core_reorder_product_depletion {
   }
 
   measure: total_gross_margin_d30 {
+    label: "Gross Margin Last 30 Days"
     group_label: "Last 30 Days"
     type: number
     value_format_name: percent_1
@@ -255,6 +274,7 @@ view: core_reorder_product_depletion {
   }
 
   measure: revenue_per_unit_d7 {
+    label: "Revenue Per Unit Last 7 Days"
     group_label: "Last 7 Days"
     type: number
     value_format: "#,##0.00"
@@ -262,6 +282,7 @@ view: core_reorder_product_depletion {
  }
 
   measure: revenue_per_unit_d7to14 {
+    label: "Revenue Per Unit Week Prior"
     group_label: "Week Prior"
     type: number
     value_format: "#,##0.00"
@@ -269,6 +290,7 @@ view: core_reorder_product_depletion {
   }
 
   measure: revenue_per_unit_d30 {
+    label: "Revenue Per Unit Last 30 Days"
     group_label: "Last 30 Days"
     type: number
     value_format: "#,##0.00"

@@ -2,14 +2,17 @@ view: dim_domo_current_inventory {
   sql_table_name: `fivetran-purple-lotus-warehous.dbt.dim_domo_current_inventory`
     ;;
 
+
+  dimension: pk {
+    primary_key: yes
+    hidden: yes
+    type: number
+    sql: concat(${product_id},${available_units}) ;;
+  }
+
   dimension: available_units {
     type: number
     sql: ${TABLE}.available_units ;;
-  }
-
-  dimension: avg_days_aged {
-    type: number
-    sql: ${TABLE}.avg_days_aged ;;
   }
 
   dimension: packed_and_ready_units {
@@ -18,7 +21,7 @@ view: dim_domo_current_inventory {
   }
 
   dimension: product_id {
-    primary_key: yes
+    # primary_key: yes
     type: string
     sql: ${TABLE}.product_id ;;
   }
@@ -26,7 +29,8 @@ view: dim_domo_current_inventory {
   dimension: productbrand {
     type: string
     sql: ${TABLE}.productbrand ;;
-    drill_fields: [productname, weight]
+    drill_fields: [productname, weight,
+      core_domo_ticket_items.classification]
   }
 
   dimension: productname {
@@ -37,6 +41,7 @@ view: dim_domo_current_inventory {
   dimension: producttype {
     type: string
     sql: ${TABLE}.producttype ;;
+    drill_fields: [shelf, productbrand]
   }
 
   dimension: reserved_units {
@@ -77,7 +82,7 @@ view: dim_domo_current_inventory {
   dimension: weight {
     type: number
     sql: ${TABLE}.weight ;;
-    drill_fields: [productname]
+    drill_fields: [productname, productbrand, core_domo_ticket_items.classification]
 
   }
 
@@ -124,12 +129,6 @@ view: dim_domo_current_inventory {
     type: sum
     value_format: "$#,##0.00"
     sql: ${total_cost_with_excise} ;;
-  }
-
-  measure: average_days_aged {
-    type: average
-    value_format: "#,##0"
-    sql: ${avg_days_aged} ;;
   }
 
   measure: average_days_aged_weighted {

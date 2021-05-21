@@ -10,14 +10,14 @@ explore: ticket_items {
 
   join: dim_tickets {
     view_label: "Tickets"
-    type: inner
+    type: left_outer
     relationship: many_to_one
     sql_on: ${dim_tickets.ticket_id} = ${ticket_items.ticket_id} ;;
   }
 
  join: dim_customers {
     view_label: "Customers"
-    type: inner
+    type: left_outer
     relationship: many_to_one
     sql_on: ${dim_tickets.customer_id} = ${dim_customers.customer_id};;
   }
@@ -265,6 +265,24 @@ explore: core_domo_inventory {
 
 }
 
+
+explore: core_reorder_product_depletion {
+  label: "Inventory Reorder"
+  view_label: "Inventory Reorder"
+  group_label: " Treez Data - DOMO NEW"
+
+  join: dim_domo_current_inventory {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${core_reorder_product_depletion.product_id} = ${dim_domo_current_inventory.product_id} ;;
+  }
+
+  join: core_domo_ticket_items {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${core_reorder_product_depletion.product_id} = ${core_domo_ticket_items.product_id} ;;
+  }
+}
 
 
 explore: order_purchase_affinity {
