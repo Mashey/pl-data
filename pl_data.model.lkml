@@ -166,6 +166,13 @@ explore: core_domo_ticket_items {
     sql_on: ${ticket_rank_by_sales.ticketid} = ${core_domo_ticket_items.ticketid} AND ${ticket_rank_by_sales.customer_uuid} = ${core_domo_ticket_items.customer_uuid} ;;
   }
 
+  join: derived_user_cohort {
+    view_label: "XX - User Cohort Filters"
+    type: inner
+    relationship: many_to_one
+    sql_on: ${core_domo_ticket_items.customer_uuid} = ${derived_user_cohort.customer_uuid} ;;
+  }
+
 }
 
 explore: core_domo_customers {
@@ -312,6 +319,7 @@ explore: order_purchase_affinity {
   }
 
   explore: core_ga_alltraffic2 {
+    hidden: yes
     label: "ga_All Traffic"
       view_label: "ga_All Traffic"
       group_label: "Google Analytics"

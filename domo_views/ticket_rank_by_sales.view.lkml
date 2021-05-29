@@ -6,7 +6,7 @@ view: ticket_rank_by_sales {
     type: number
     primary_key: yes
     hidden: yes
-    sql: concat(${ticketid},${customer_uuid},${net_sales}) ;;
+    sql: concat(${ticketid},${customer_uuid},${total_net_sales}) ;;
   }
 
   dimension: count_orders {
@@ -38,9 +38,9 @@ view: ticket_rank_by_sales {
     sql: ${TABLE}.distinct_customers ;;
   }
 
-  dimension: net_sales {
+  dimension: total_net_sales {
     type: number
-    sql: ${TABLE}.net_sales ;;
+    sql: ${TABLE}.total_net_sales ;;
   }
 
   dimension: ticket_rank_by_sale_price {
@@ -71,5 +71,12 @@ view: ticket_rank_by_sales {
   measure: count {
     type: count
     drill_fields: []
+  }
+
+  measure: avg_sequence_order_value {
+    label: "Average Order Value (Sequence)"
+    type: average
+    sql: ${total_net_sales} ;;
+    value_format: "$#,##0.00"
   }
 }
