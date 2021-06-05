@@ -82,6 +82,15 @@ explore: dim_tickets {
   group_label: " Treez Data_SellTreez"
   view_label: "Tickets"
   label: "Tickets"
+  symmetric_aggregates: no
+
+
+  join: ticket_items {
+    view_label: "Ticket Items"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${dim_tickets.ticket_id} = ${ticket_items.ticket_id} ;;
+  }
 
   join: dim_customers {
     view_label: "Customers"
