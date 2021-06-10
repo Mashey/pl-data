@@ -82,7 +82,6 @@ explore: dim_tickets {
   group_label: " Treez Data_SellTreez"
   view_label: "Tickets"
   label: "Tickets"
-  symmetric_aggregates: no
 
 
   join: ticket_items {
