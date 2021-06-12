@@ -50,7 +50,7 @@ view: core_domo_ticket_items {
       day_of_year
     ]
     convert_tz: no
-    datatype: timestamp
+    datatype: date
     sql: ${TABLE}.date_closed ;;
   }
 
@@ -74,12 +74,18 @@ view: core_domo_ticket_items {
     timeframes: [
       raw,
       time,
+      time_of_day,
+      hour_of_day,
       date,
+      day_of_month,
+      day_of_week,
+      day_of_year,
       week,
       month,
       quarter,
       year
     ]
+    convert_tz: no
     sql: ${TABLE}.date_time_closed ;;
   }
 

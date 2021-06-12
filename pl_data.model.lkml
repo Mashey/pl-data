@@ -174,6 +174,21 @@ explore: core_domo_ticket_items {
     sql_on: ${ticket_rank_by_sales.ticketid} = ${core_domo_ticket_items.ticketid} AND ${ticket_rank_by_sales.customer_uuid} = ${core_domo_ticket_items.customer_uuid} ;;
   }
 
+  join: domo_product_ranking_by_register {
+    view_label: "Product Rank By Register"
+    type: inner
+    relationship: many_to_one
+    sql_on: ${domo_product_ranking_by_register.register} = ${core_domo_ticket_items.register} AND ${domo_product_ranking_by_register.productname} = ${core_domo_ticket_items.productname}
+            AND ${domo_product_ranking_by_register.retail_brand} = ${core_domo_ticket_items.retail_brand} AND ${domo_product_ranking_by_register.product_type} = ${core_domo_ticket_items.product_type}  ;;
+  }
+
+  join: domo_classification_ranking {
+    view_label: "Classification Ranking"
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${domo_classification_ranking.customer_uuid} = ${core_domo_ticket_items.customer_uuid} AND ${domo_classification_ranking.classification} = ${core_domo_ticket_items.classification}  ;;
+  }
+
   join: derived_user_cohort {
     view_label: "XX - User Cohort Filters"
     type: inner
@@ -326,9 +341,9 @@ explore: order_purchase_affinity {
 
   }
 
-  explore: core_ga_alltraffic2 {
-    hidden: yes
-    label: "ga_All Traffic"
-      view_label: "ga_All Traffic"
-      group_label: "Google Analytics"
-  }
+explore: core_ga_alltraffic2 {
+  hidden: yes
+  label: "ga_All Traffic"
+  view_label: "ga_All Traffic"
+  group_label: "Google Analytics"
+}
