@@ -4,7 +4,7 @@ case_sensitive: no
 include: "/**/*.view.lkml"
 
 explore: ticket_items {
-  hidden: yes
+  #hidden: yes
   from: ticket_items
   group_label: " Treez Data_SellTreez"
 
@@ -340,8 +340,12 @@ explore: order_purchase_affinity {
 
   }
 
+
 explore: core_ga_alltraffic2 {
   label: "ga_All Traffic"
   view_label: "ga_All Traffic"
   group_label: "Google Analytics"
 }
+
+
+  explore: brand_exclusivity {}
