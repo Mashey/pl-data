@@ -342,6 +342,7 @@ view: order_items_base {
       type: number
       sql: 1.0*${product_a_count_orders_by_exclusive_customers}/(CASE WHEN ${product_a_order_count}=0 THEN NULL ELSE ${product_a_order_count} END) ;;
       value_format_name: percent_2
+      drill_fields: [order_items.user_id]
     }
 
     dimension: product_a_count_purchased_by_loyalty_customer {

@@ -328,6 +328,12 @@ view: core_domo_ticket_items {
     filters: [type: "RETURN"]
   }
 
+  measure: total_returns_amount {
+    type: sum
+    value_format: "$#,##0.00"
+    sql: ${returns_amount} ;;
+  }
+
   measure: total_gross_profit{
     type: number
     value_format: "$#,##0.00"

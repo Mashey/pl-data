@@ -27,6 +27,12 @@ view: domo_product_ranking_by_register {
     sql: ${TABLE}.date_closed ;;
   }
 
+  dimension: product_id {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.product_id ;;
+  }
+
   dimension: product_ranking_register {
     type: number
     sql: ${TABLE}.product_ranking_register ;;

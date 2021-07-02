@@ -178,8 +178,7 @@ explore: core_domo_ticket_items {
     view_label: "Product Rank By Register"
     type: inner
     relationship: many_to_one
-    sql_on: ${domo_product_ranking_by_register.register} = ${core_domo_ticket_items.register} AND ${domo_product_ranking_by_register.productname} = ${core_domo_ticket_items.productname}
-            AND ${domo_product_ranking_by_register.retail_brand} = ${core_domo_ticket_items.retail_brand} AND ${domo_product_ranking_by_register.product_type} = ${core_domo_ticket_items.product_type}  ;;
+    sql_on: ${domo_product_ranking_by_register.register} = ${core_domo_ticket_items.register} AND ${domo_product_ranking_by_register.product_id} = ${core_domo_ticket_items.product_id} ;;
   }
 
   join: domo_classification_ranking {
@@ -342,7 +341,6 @@ explore: order_purchase_affinity {
   }
 
 explore: core_ga_alltraffic2 {
-  hidden: yes
   label: "ga_All Traffic"
   view_label: "ga_All Traffic"
   group_label: "Google Analytics"
