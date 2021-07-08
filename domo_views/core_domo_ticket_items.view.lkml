@@ -388,6 +388,12 @@ view: core_domo_ticket_items {
     sql: ${total_net_sales}/nullif(${total_units_sold_net},0) ;;
   }
 
+  measure: gross_sales_per_unit {
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${total_gross_sales}/nullif(${total_units_sold_net} ;;
+  }
+
   measure: total_cost_with_excise {
     type: sum
     value_format: "$#,##0.00"

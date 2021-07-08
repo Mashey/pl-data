@@ -90,6 +90,14 @@ view: dim_domo_current_inventory {
     type: number
     sql: ${TABLE}.days_aged_weighted ;;
   }
+
+  dimension: days_aged_tiers {
+    type: tier
+    tiers: [1,31,61,91,121]
+    style: integer
+    sql: ${days_aged_weighted} ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [productname]
