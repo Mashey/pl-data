@@ -394,4 +394,10 @@ explore: core_ga_alltraffic2 {
     relationship: many_to_one
     sql_on: ${core_domo_discount.customer_uuid} = ${core_domo_customers.customer_uuid} ;;
   }
+
+  join: core_domo_customer_lifetime_data {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${core_domo_discount.customer_uuid} = ${core_domo_customer_lifetime_data.customer_uuid} ;;
+  }
   }
