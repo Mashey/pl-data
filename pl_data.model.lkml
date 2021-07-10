@@ -379,14 +379,14 @@ explore: core_ga_alltraffic2 {
   }
 
   explore: core_domo_discount {
-    label: "Domo Discounts"
-    view_label: "Domo Discounts"
+    label: "Discounts"
+    view_label: "Discounts"
     group_label: " Treez Data - DOMO NEW"
 
   join: core_domo_ticket_items {
     type: left_outer
     relationship: one_to_one
-    sql_on: ${core_domo_ticket_items.ticketlineid} = ${core_domo_discount.ticketlineid} ;;
+    sql_on: ${core_domo_ticket_items.ticketlineid} = ${core_domo_discount.ticketlineid} AND ${core_domo_discount.customer_uuid} = ${core_domo_ticket_items.customer_uuid} ;;
   }
 
   join: core_domo_customers {
@@ -398,6 +398,6 @@ explore: core_ga_alltraffic2 {
   join: core_domo_customer_lifetime_data {
     type: left_outer
     relationship: many_to_one
-    sql_on: ${core_domo_discount.customer_uuid} = ${core_domo_customer_lifetime_data.customer_uuid} ;;
+    sql_on: ${core_domo_discount.customer_uuid} = ${core_domo_customer_lifetime_data.customer_uuid};;
   }
   }
