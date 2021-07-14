@@ -239,6 +239,7 @@ view: core_reorder_product_depletion {
     type: sum
     value_format: "$#,##0.00"
     sql: ${sales_prior_7to14} ;;
+    drill_fields: [core_domo_ticket_items.productname, core_domo_ticket_items.productbrand, core_domo_ticket_items.product_type, sum_units_sold_prior7to14]
   }
 
   measure: total_sales_d7 {
@@ -247,6 +248,7 @@ view: core_reorder_product_depletion {
     type: sum
     value_format: "$#,##0.00"
     sql: ${sales_prior_7} ;;
+    drill_fields: [core_domo_ticket_items.productname, core_domo_ticket_items.productbrand, core_domo_ticket_items.product_type, sum_units_sold_prior7]
   }
 
   measure: total_gross_margin_d7 {

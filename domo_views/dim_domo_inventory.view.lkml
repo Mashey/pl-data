@@ -12,6 +12,13 @@ view: dim_domo_inventory {
     sql: ${TABLE}.avg_days_aged ;;
   }
 
+  dimension: days_aged_tiers {
+    type: tier
+    tiers: [1,31,61,91,121]
+    style: integer
+    sql: ${avg_days_aged};;
+}
+
   dimension: packed_and_ready_units {
     type: number
     sql: ${TABLE}.packed_and_ready_units ;;
@@ -37,6 +44,7 @@ view: dim_domo_inventory {
   dimension: producttype {
     type: string
     sql: ${TABLE}.producttype ;;
+    drill_fields: [shelf, productbrand]
   }
 
   dimension: reserved_units {

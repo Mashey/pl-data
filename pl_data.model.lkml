@@ -311,6 +311,12 @@ explore: core_reorder_product_depletion {
     relationship: one_to_many
     sql_on: ${core_reorder_product_depletion.product_id} = ${core_domo_ticket_items.product_id} ;;
   }
+
+  join: dim_domo_inventory {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${core_reorder_product_depletion.product_id} = ${dim_domo_inventory.product_id} ;;
+  }
 }
 
 
