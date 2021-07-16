@@ -246,6 +246,7 @@ explore: core_domo_customers {
 }
 
 explore: agg_domo_tickets {
+  hidden: yes
   group_label: " Treez Data - DOMO NEW"
   view_label: "Orders"
   label: "Orders"
@@ -407,3 +408,16 @@ explore: core_ga_alltraffic2 {
     sql_on: ${core_domo_discount.customer_uuid} = ${core_domo_customer_lifetime_data.customer_uuid};;
   }
   }
+
+  explore: core_domo_inventory_historical {
+    label: "Historical Inventory"
+    group_label: " Treez Data - DOMO NEW"
+    view_label: "Historical Inventory"
+
+  join: core_domo_ticket_items {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${core_domo_inventory_historical.product_id} = ${core_domo_ticket_items.product_id} ;;
+  }
+  }
+

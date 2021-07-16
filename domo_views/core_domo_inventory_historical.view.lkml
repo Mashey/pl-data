@@ -62,6 +62,7 @@ view: core_domo_inventory_historical {
   }
 
   dimension: pk {
+    primary_key: yes
     type: string
     sql: ${TABLE}.pk ;;
   }
@@ -124,5 +125,41 @@ view: core_domo_inventory_historical {
   measure: count {
     type: count
     drill_fields: [location_name, productname]
+  }
+
+  measure: total_available_units {
+    type: sum
+    value_format: "#,##0"
+    sql: ${available_units} ;;
+  }
+
+  measure: total_packed_and_ready_units {
+    type: sum
+    value_format: "#,##0"
+    sql: ${packed_and_ready_units} ;;
+  }
+
+  measure: total_reserved_units {
+    type: sum
+    value_format: "#,##0"
+    sql: ${reserved_units} ;;
+  }
+
+  measure: total_units {
+    type: number
+    value_format: "#,##0"
+    sql: ${total_available_units}+${total_packed_and_ready_units}+${total_reserved_units} ;;
+  }
+
+  measure: total_cost_without_excise_tax {
+    type: sum
+    value_format: "$#,##0.00"
+    sql: ${total_cost} ;;
+  }
+
+  measure: total_cost_with_excise_tax {
+    type: sum
+    value_format: "$#,##0.00"
+    sql: ${total_cost_with_excise} ;;
   }
 }

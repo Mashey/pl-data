@@ -156,4 +156,11 @@ view: core_domo_discount {
     type: count
     drill_fields: [productname]
   }
+
+  measure: total_discount_amount {
+    type: sum
+    value_format: "$#.00;($#.00)"
+    sql: ${discount_amount} ;;
+    drill_fields: [customer_uuid, core_domo_customers.groupname]
+  }
 }
