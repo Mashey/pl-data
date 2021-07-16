@@ -161,6 +161,6 @@ view: core_domo_discount {
     type: sum
     value_format: "$#.00;($#.00)"
     sql: ${discount_amount} ;;
-    drill_fields: [customer_uuid, core_domo_customers.groupnames]
+    drill_fields: [ticket_id, cashier, customer_uuid, core_domo_customers.groupnames]
   }
 }
