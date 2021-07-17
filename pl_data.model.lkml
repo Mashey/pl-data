@@ -302,18 +302,21 @@ explore: core_reorder_product_depletion {
   group_label: " Treez Data - DOMO NEW"
 
   join: dim_domo_current_inventory {
+    view_label: "dim_Current Inventory"
     type: left_outer
     relationship: one_to_one
     sql_on: ${core_reorder_product_depletion.product_id} = ${dim_domo_current_inventory.product_id} ;;
   }
 
   join: core_domo_ticket_items {
+    view_label: "Order Items"
     type: left_outer
     relationship: one_to_many
     sql_on: ${core_reorder_product_depletion.product_id} = ${core_domo_ticket_items.product_id} ;;
   }
 
   join: dim_domo_inventory {
+    view_label: "dim_Inventory"
     type: left_outer
     relationship: one_to_one
     sql_on: ${core_reorder_product_depletion.product_id} = ${dim_domo_inventory.product_id} ;;
@@ -361,24 +364,28 @@ explore: core_ga_alltraffic2 {
     group_label: " Treez Data - DOMO NEW"
 
   join: core_domo_customers {
+    view_label: "Customers"
     type: left_outer
     relationship: one_to_one
     sql_on: ${core_domo_customers.customer_uuid} = ${brand_exclusivity.customer_uuid} ;;
   }
 
   join: core_domo_customer_location {
+    view_label: "Customer Location"
     type: left_outer
     relationship: one_to_one
     sql_on: ${core_domo_customer_location.customer_uuid} = ${brand_exclusivity.customer_uuid} ;;
   }
 
   join: core_domo_customer_lifetime_data {
+    view_label: "Customer Lifetime Data"
     type: left_outer
     relationship: one_to_one
     sql_on: ${core_domo_customer_lifetime_data.customer_uuid} = ${brand_exclusivity.customer_uuid} ;;
   }
 
   join: core_domo_ticket_items {
+    view_label: "Order Items"
     type: left_outer
     relationship: one_to_many
     sql_on: ${core_domo_ticket_items.customer_uuid} = ${brand_exclusivity.customer_uuid} ;;
@@ -391,18 +398,21 @@ explore: core_ga_alltraffic2 {
     group_label: " Treez Data - DOMO NEW"
 
   join: core_domo_ticket_items {
+    view_label: "Order Items"
     type: left_outer
     relationship: one_to_one
     sql_on: ${core_domo_ticket_items.ticketlineid} = ${core_domo_discount.ticketlineid} AND ${core_domo_discount.customer_uuid} = ${core_domo_ticket_items.customer_uuid} ;;
   }
 
   join: core_domo_customers {
+    view_label: "Customers"
     type: left_outer
     relationship: many_to_one
     sql_on: ${core_domo_discount.customer_uuid} = ${core_domo_customers.customer_uuid} ;;
   }
 
   join: core_domo_customer_lifetime_data {
+    view_label: "Customer Lifetime Data"
     type: left_outer
     relationship: many_to_one
     sql_on: ${core_domo_discount.customer_uuid} = ${core_domo_customer_lifetime_data.customer_uuid};;
@@ -415,9 +425,9 @@ explore: core_ga_alltraffic2 {
     view_label: "Historical Inventory"
 
   join: core_domo_ticket_items {
+    view_label: "Order Items"
     type: left_outer
     relationship: one_to_many
     sql_on: ${core_domo_inventory_historical.product_id} = ${core_domo_ticket_items.product_id} ;;
   }
   }
-

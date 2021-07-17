@@ -148,14 +148,14 @@ view: dim_domo_current_inventory {
   measure: sku_count {
     description: "Sku count by unique name/brand"
     type: count_distinct
-    value_format: "0.0"
+    value_format: "#,##0"
     sql: CONCAT(${productname},${productbrand},${product_id}) ;;
   }
 
   measure: brand_count {
     description: "Count of all brands"
     type: count_distinct
-    value_format: "0.0"
+    value_format: "#,##0"
     sql: ${productbrand} ;;
   }
 

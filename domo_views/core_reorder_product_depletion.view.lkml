@@ -144,7 +144,7 @@ view: core_reorder_product_depletion {
     type: sum
     description: "Daily Depletion Rate based on units sold prior 30 days"
     value_format: "#,##0.00"
-    sql: COALESCE(${units_sold_prior_30} / 7,0) ;;
+    sql: COALESCE(${units_sold_prior_30} / 30,0) ;;
   }
 
   measure: units_sold_daily_depletion_7to14 {
