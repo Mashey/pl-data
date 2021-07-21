@@ -55,6 +55,7 @@ view: derived_user_cohort {
     }
 
     dimension: quantity_sold {
+      hidden: yes
       type: number
       sql: ${TABLE}.quantity_sold ;;
     }

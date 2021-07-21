@@ -31,6 +31,7 @@ view: domo_product_ranking {
   }
 
   dimension: quantity {
+    hidden: yes
     type: number
     sql: ${TABLE}.quantity ;;
   }
@@ -42,6 +43,7 @@ view: domo_product_ranking {
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [product_name]
   }

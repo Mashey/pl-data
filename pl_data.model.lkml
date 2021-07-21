@@ -431,3 +431,9 @@ explore: core_ga_alltraffic2 {
     sql_on: ${core_domo_inventory_historical.product_id} = ${core_domo_ticket_items.product_id} ;;
   }
   }
+
+  explore: core_domo_invoices {
+    label: "Invoices - Inventory"
+    group_label: " Treez Data - DOMO NEW"
+    view_label: "Invoices - Inventory"
+  }

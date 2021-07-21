@@ -11,11 +11,13 @@ view: dim_domo_current_inventory {
   }
 
   dimension: available_units {
+    hidden: yes
     type: number
     sql: ${TABLE}.available_units ;;
   }
 
   dimension: packed_and_ready_units {
+    hidden: yes
     type: number
     sql: ${TABLE}.packed_and_ready_units ;;
   }
@@ -45,6 +47,7 @@ view: dim_domo_current_inventory {
   }
 
   dimension: reserved_units {
+    hidden: yes
     type: number
     sql: ${TABLE}.reserved_units ;;
   }
@@ -60,16 +63,19 @@ view: dim_domo_current_inventory {
   }
 
   dimension: total_cost {
+    hidden: yes
     type: number
     sql: ${TABLE}.total_cost ;;
   }
 
   dimension: total_cost_with_excise {
+    hidden: yes
     type: number
     sql: ${TABLE}.total_cost_with_excise ;;
   }
 
   dimension: total_units {
+    hidden: yes
     type: number
     sql: ${TABLE}.total_units ;;
   }
@@ -99,6 +105,7 @@ view: dim_domo_current_inventory {
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [productname]
   }

@@ -8,6 +8,7 @@ view: core_domo_ticket_items {
   }
 
   dimension: cbt_tax {
+    hidden: yes
     type: number
     sql: ${TABLE}.cbt_tax ;;
   }
@@ -19,11 +20,13 @@ view: core_domo_ticket_items {
   }
 
   dimension: cost {
+    hidden: yes
     type: number
     sql: ${TABLE}.cost ;;
   }
 
   dimension: cost_without_excise {
+    hidden: yes
     type: number
     sql: ${TABLE}.cost_without_excise ;;
   }
@@ -104,31 +107,37 @@ view: core_domo_ticket_items {
   }
 
   dimension: discounts {
+    hidden: yes
     type: number
     sql: ${TABLE}.discounts ;;
   }
 
   dimension: dynamic_tax {
+    hidden: yes
     type: string
     sql: ${TABLE}.dynamic_tax ;;
   }
 
   dimension: excise_tax {
+    hidden: yes
     type: number
     sql: ${TABLE}.excise_tax ;;
   }
 
   dimension: gross_income {
+    hidden: yes
     type: number
     sql: ${TABLE}.gross_income ;;
   }
 
   dimension: gross_receipts {
+    hidden: yes
     type: number
     sql: ${TABLE}.gross_receipts ;;
   }
 
   dimension: grosssales {
+    hidden: yes
     type: number
     sql: ${TABLE}.grosssales ;;
   }
@@ -139,6 +148,7 @@ view: core_domo_ticket_items {
   }
 
   dimension: net_sales {
+    hidden: yes
     type: number
     sql: ${TABLE}.net_sales ;;
   }
@@ -175,6 +185,7 @@ view: core_domo_ticket_items {
   }
 
   dimension: quantity {
+    hidden: yes
     type: number
     sql: ${TABLE}.quantity ;;
   }
@@ -205,11 +216,13 @@ view: core_domo_ticket_items {
 
 
   dimension: returns_amount {
+    hidden: yes
     type: number
     sql: ${TABLE}.returns_amount ;;
   }
 
   dimension: sales_tax {
+    hidden: yes
     type: number
     sql: ${TABLE}.sales_tax ;;
   }
@@ -236,6 +249,7 @@ view: core_domo_ticket_items {
   }
 
   dimension: total_taxes {
+    hidden: yes
     type: number
     sql: ${TABLE}.total_taxes ;;
   }
@@ -256,6 +270,7 @@ view: core_domo_ticket_items {
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [productname]
   }

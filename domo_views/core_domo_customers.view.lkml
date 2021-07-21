@@ -100,6 +100,7 @@ view: core_domo_customers {
   }
 
   dimension: reward_balance {
+    hidden: yes
     type: number
     sql: ${TABLE}.reward_balance ;;
   }

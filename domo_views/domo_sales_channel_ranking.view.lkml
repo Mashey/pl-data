@@ -30,6 +30,7 @@ view: domo_sales_channel_ranking {
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: []
   }

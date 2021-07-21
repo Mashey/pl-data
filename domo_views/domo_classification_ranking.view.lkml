@@ -31,6 +31,7 @@ view: domo_classification_ranking {
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: []
   }

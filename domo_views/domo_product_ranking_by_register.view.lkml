@@ -64,6 +64,7 @@ view: domo_product_ranking_by_register {
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [productname]
   }

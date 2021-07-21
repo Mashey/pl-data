@@ -69,6 +69,7 @@ view: ticket_rank_by_sales {
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: []
   }

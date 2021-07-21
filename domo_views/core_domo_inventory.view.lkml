@@ -15,6 +15,7 @@ view: core_domo_inventory {
   }
 
   dimension: available_units {
+    hidden: yes
     type: number
     sql: ${TABLE}.available_units ;;
   }
@@ -57,6 +58,7 @@ view: core_domo_inventory {
   }
 
   dimension: packed_and_ready_units {
+    hidden: yes
     type: number
     sql: ${TABLE}.packed_and_ready_units ;;
   }
@@ -82,6 +84,7 @@ view: core_domo_inventory {
   }
 
   dimension: reserved_units {
+    hidden: yes
     type: number
     sql: ${TABLE}.reserved_units ;;
   }
@@ -97,16 +100,19 @@ view: core_domo_inventory {
   }
 
   dimension: total_cost {
+    hidden: yes
     type: number
     sql: ${TABLE}.total_cost ;;
   }
 
   dimension: total_cost_with_excise {
+    hidden: yes
     type: number
     sql: ${TABLE}.total_cost_with_excise ;;
   }
 
   dimension: total_units {
+    hidden: yes
     type: number
     sql: ${available_units} + ${reserved_units} + ${packed_and_ready_units} ;;
   }
@@ -123,6 +129,7 @@ view: core_domo_inventory {
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [location_name, productname]
   }

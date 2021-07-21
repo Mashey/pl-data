@@ -8,6 +8,7 @@ view: core_domo_customer_location {
   }
 
   dimension: customer_uuid {
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.customer_uuid ;;

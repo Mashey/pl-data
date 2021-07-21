@@ -52,6 +52,7 @@ view: core_domo_invoices {
 
   dimension: invoice_number {
     type: number
+    value_format: "0"
     sql: ${TABLE}.invoice_number ;;
   }
 
@@ -86,16 +87,19 @@ view: core_domo_invoices {
   }
 
   dimension: total_cost {
+    hidden: yes
     type: number
     sql: ${TABLE}.total_cost ;;
   }
 
   dimension: total_cost_final {
+    hidden: yes
     type: number
     sql: ${TABLE}.total_cost_final ;;
   }
 
   dimension: total_final_cost {
+    hidden: yes
     type: number
     sql: ${TABLE}.total_final_cost ;;
   }
@@ -111,7 +115,30 @@ view: core_domo_invoices {
   }
 
   measure: count {
+    hidden: yes
     type: count
-    drill_fields: [productname, vendorname]
+  }
+
+  measure: sum_total_cost {
+    label: "Total Cost"
+    type: sum
+    value_format: "$#,##0.00"
+    sql: ${total_cost} ;;
+  }
+
+  measure: sum_total_quantity {
+    label: "Total Quantity"
+    type: sum
+    value_format: "#,##0"
+    sql: ${qty} ;;
+    drill_fields: [invoice_number, vendorname, producttype, productbrand, productname, sum_total_cost, sum_total_quantity]
+  }
+
+  measure: distinct_invoice_number{
+    label: "Count Distinct Invoices"
+    type: count_distinct
+    value_format: "#,##0"
+    sql: ${invoice_number} ;;
+    drill_fields: [invoice_number, vendorname, sum_total_cost, sum_total_quantity]
   }
 }
