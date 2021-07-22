@@ -169,4 +169,10 @@ view: core_domo_inventory_historical {
     value_format: "$#,##0.00"
     sql: ${total_cost_with_excise} ;;
   }
+
+  measure: average_days_aged {
+    type: average
+    value_format: "#,##0"
+    sql: ${days_aged} ;;
+  }
 }
