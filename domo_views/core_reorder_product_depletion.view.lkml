@@ -299,4 +299,21 @@ view: core_reorder_product_depletion {
     sql: ${total_sales_d30}/nullif(${sum_units_sold_prior30},0) ;;
   }
 
+  measure: total_sales_week_over_week_change{
+    label: "Total Sales WoW change"
+    description: "Percent change in sales from Last 7 Days and Week Prior"
+    group_label: "Last 7 Days"
+    type: number
+    value_format_name: percent_1
+    sql: (${total_sales_d7} - ${total_sales_d7to14})/nullif(${total_sales_d7to14},0) ;;
+  }
+
+  measure: total_units_sold_week_over_week_change{
+    label: "Total Units Sold WoW change"
+    description: "Percent change in units sold from Last 7 Days and Week Prior"
+    group_label: "Last 7 Days"
+    type: number
+    value_format_name: percent_1
+    sql: (${sum_units_sold_prior7} - ${sum_units_sold_prior7to14})/nullif(${sum_units_sold_prior7to14},0) ;;
+  }
 }

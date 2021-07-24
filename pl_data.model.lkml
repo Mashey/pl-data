@@ -293,6 +293,13 @@ explore: core_domo_inventory {
     sql_on: ${dim_domo_inventory.product_id} = ${core_domo_ticket_items.product_id} ;;
   }
 
+  join: core_domo_customers {
+    view_label: "Customers"
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${core_domo_customers.customer_uuid} = ${core_domo_ticket_items.customer_uuid} ;;
+  }
+
 }
 
 
@@ -398,7 +405,7 @@ explore: core_ga_alltraffic2 {
     group_label: " Treez Data - DOMO NEW"
 
   join: core_domo_ticket_items {
-    view_label: "Order Items"
+    view_label: "Order Items - For Use With Discounts Only"
     type: left_outer
     relationship: one_to_one
     sql_on: ${core_domo_ticket_items.ticketlineid} = ${core_domo_discount.ticketlineid} AND ${core_domo_discount.customer_uuid} = ${core_domo_ticket_items.customer_uuid} ;;
@@ -428,7 +435,7 @@ explore: core_ga_alltraffic2 {
     view_label: "Order Items"
     type: left_outer
     relationship: one_to_many
-    sql_on: ${core_domo_inventory_historical.product_id} = ${core_domo_ticket_items.product_id} ;;
+    sql_on: ${core_domo_inventory_historical.product_id} = ${core_domo_ticket_items.product_id} AND ${core_domo_inventory_historical.inventory_valuation_date} = ${core_domo_ticket_items.date_closed_date};;
   }
   }
 
