@@ -50,7 +50,8 @@ view: core_domo_ticket_items {
       month_num,
       quarter,
       year,
-      day_of_year
+      day_of_year,
+      week_of_year
     ]
     convert_tz: no
     datatype: date
