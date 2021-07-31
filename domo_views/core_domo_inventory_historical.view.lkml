@@ -175,4 +175,20 @@ view: core_domo_inventory_historical {
     value_format: "#,##0"
     sql: ${days_aged} ;;
   }
+
+  measure: sku_count {
+    description: "Sku count by unique name/brand"
+    type: count_distinct
+    value_format: "#,##0"
+    sql: CONCAT(${productname},${productbrand},${product_id}) ;;
+    filters: [available_units: ">0"]
+  }
+
+  measure: brand_count {
+    description: "Count of all brands"
+    type: count_distinct
+    value_format: "#,##0"
+    sql: ${productbrand} ;;
+    filters: [available_units: ">0"]
+  }
 }

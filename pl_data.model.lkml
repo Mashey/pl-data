@@ -435,7 +435,7 @@ explore: core_ga_alltraffic2 {
     view_label: "Order Items"
     type: left_outer
     relationship: one_to_many
-    sql_on: ${core_domo_inventory_historical.product_id} = ${core_domo_ticket_items.product_id} AND ${core_domo_inventory_historical.inventory_valuation_date} = ${core_domo_ticket_items.date_closed_date};;
+    sql_on: ${core_domo_inventory_historical.product_id} = ${core_domo_ticket_items.product_id} AND CAST(${core_domo_inventory_historical.inventory_valuation_date} as date) = CAST(${core_domo_ticket_items.date_closed_date} as date);;
   }
   }
 
