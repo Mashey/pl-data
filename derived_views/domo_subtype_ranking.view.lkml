@@ -8,6 +8,8 @@ view: domo_subtype_ranking {
   }
 
   dimension: pk {
+    primary_key: yes
+    hidden: yes
     type: string
     sql: ${TABLE}.PK ;;
   }
@@ -28,11 +30,13 @@ view: domo_subtype_ranking {
   }
 
   dimension: quantity {
+    hidden: yes
     type: number
     sql: ${TABLE}.quantity ;;
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: []
   }

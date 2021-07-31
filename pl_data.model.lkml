@@ -160,6 +160,13 @@ explore: core_domo_ticket_items {
     sql_on: ${domo_product_type_ranking.customer_uuid} = ${core_domo_customers.customer_uuid} ;;
   }
 
+  join: domo_subtype_ranking {
+    view_label: "Product Subtype Ranking"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${core_domo_customers.customer_uuid} = ${domo_subtype_ranking.customer_uuid} ;;
+  }
+
   join: domo_sales_channel_ranking {
     view_label: "Sales Channel Ranking"
     type: left_outer
