@@ -43,6 +43,7 @@ view: core_domo_ticket_items {
       time_of_day,
       hour_of_day,
       date,
+      day_of_week,
       day_of_month,
       week,
       month,
@@ -166,6 +167,11 @@ view: core_domo_ticket_items {
     sql: ${rev_per_unit} ;;
  }
 
+dimension: order_source {
+  type: string
+  sql:  ${TABLE}.order_source ;;
+}
+
   dimension: priceunit {
     type: number
     sql: ${TABLE}.priceunit ;;
@@ -238,6 +244,11 @@ view: core_domo_ticket_items {
     hidden: yes
     type: number
     sql: ${TABLE}.sales_tax ;;
+  }
+
+  dimension: ticket_notes {
+    type: string
+    sql: ${TABLE}.ticket_notes ;;
   }
 
   dimension: ticket_status {
@@ -427,6 +438,4 @@ view: core_domo_ticket_items {
     value_format: "$#,##0.00"
     sql: ${cost} ;;
   }
-
-
- }
+}

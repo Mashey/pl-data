@@ -143,6 +143,11 @@ view: core_domo_discount {
     sql: ${TABLE}.ticket_id ;;
   }
 
+  dimension: ticket_alpha {
+    type: string
+    sql: ${TABLE}.ticket_alpha ;;
+  }
+
   dimension: ticketlineid {
     primary_key: yes
     type: string
