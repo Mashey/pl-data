@@ -311,6 +311,14 @@ dimension: order_source {
     sql: ${discounts} ;;
   }
 
+  measure: total_discounts_only_WESTCOASTTREES {
+    type: sum
+    value_format: "$#,##0.00"
+    sql: ${discounts};;
+    filters: [productbrand: "WEST COAST TREES"]
+    hidden: yes
+  }
+
   measure: total_excise_tax  {
     type: sum
     value_format: "$#,##0.00"
@@ -333,6 +341,14 @@ dimension: order_source {
     type: sum
     value_format: "$#,##0.00"
     sql: ${gross_receipts} ;;
+  }
+
+  measure: total_gross_sales_only_WESTCOASTTREES {
+    type: sum
+    value_format: "$#,##0.00"
+    sql: ${grosssales} ;;
+    filters: [productbrand: "WEST COAST TREES"]
+    hidden: yes
   }
 
   measure: total_gross_sales {
@@ -389,6 +405,12 @@ dimension: order_source {
     type: number
     value_format_name: percent_2
     sql: ${total_discounts}/nullif(${total_gross_sales},0) ;;
+  }
+
+  measure: discount_rate_without_WESTCOASTTREES {
+    type: number
+    value_format_name: percent_2
+    sql: (${total_discounts}-${total_discounts_only_WESTCOASTTREES})/nullif((${total_gross_sales}-${total_gross_sales_only_WESTCOASTTREES}),0) ;;
   }
 
   measure: count_distinct_customers {

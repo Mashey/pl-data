@@ -43,7 +43,7 @@ view: dim_domo_current_inventory {
   dimension: producttype {
     type: string
     sql: ${TABLE}.producttype ;;
-    drill_fields: [shelf, productbrand]
+    drill_fields: [shelf, productbrand, weight, core_domo_ticket_items.classification]
   }
 
   dimension: reserved_units {
