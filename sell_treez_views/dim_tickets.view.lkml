@@ -170,6 +170,7 @@ view: dim_tickets {
     value_format: "$#,##0.00"
     type: sum
     sql: ${reward_points_used}/100 ;;
+    drill_fields: [ticket_id,customer_id,net_sales,reward_points_used]
   }
 
   measure: total_discounts {

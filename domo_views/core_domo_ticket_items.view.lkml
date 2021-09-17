@@ -157,7 +157,7 @@ view: core_domo_ticket_items {
 
   dimension: rev_per_unit {
     type: number
-    sql: (${net_sales}+${returns_amount})/${quantity} ;;
+    sql: (${net_sales}+${returns_amount})/nullif(${quantity},0) ;;
   }
 
   dimension: rev_per_unit_tiers {
@@ -417,12 +417,14 @@ dimension: order_source {
     type: count_distinct
     value_format: "#,##0"
     sql: ${customer_uuid} ;;
+    drill_fields: [customer_uuid,  total_net_sales]
   }
 
   measure: total_orders {
     type: count_distinct
     value_format: "#,##0"
     sql: ${ticketid} ;;
+    drill_fields: [ticketid, product_type, productbrand, productname, total_units_sold_net, total_net_sales]
   }
 
   measure: average_order_value {

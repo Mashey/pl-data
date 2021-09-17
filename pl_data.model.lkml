@@ -42,6 +42,12 @@ explore: customers {
   from: dim_customers
   group_label: " Treez Data_SellTreez"
 
+  join: dim_tickets {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${customers.customer_id} = ${dim_tickets.customer_id} ;;
+  }
+
   join: customer_addresses {
     type: left_outer
     relationship: one_to_many
@@ -451,8 +457,3 @@ explore: brand_exclusivity {
     group_label: " Treez Data - DOMO NEW"
     view_label: "Invoices - Inventory"
   }
-
-
-
-
-

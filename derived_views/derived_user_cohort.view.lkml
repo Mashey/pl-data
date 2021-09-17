@@ -3,7 +3,8 @@ view: derived_user_cohort {
 
     sql: SELECT ct.customer_uuid,
                 timestamp(ct.date_closed) AS date_closed,
-                sum(ct.quantity) as quantity_sold
+                sum(ct.quantity) as quantity_sold,
+                sum(ct.net_sales) as net_sales
                 FROM `fivetran-purple-lotus-warehous.dbt.core_domo_ticket_items` ct
 
                 LEFT JOIN `fivetran-purple-lotus-warehous.dbt.dim_domo_inventory` di ON di.product_id = ct.product_id
@@ -19,7 +20,7 @@ view: derived_user_cohort {
 
 
     dimension: customer_uuid {
-      hidden: yes
+      hidden: no
       description: "Unique ID for each user that has ordered"
       type: number
       sql: ${TABLE}.customer_uuid ;;
@@ -60,10 +61,28 @@ view: derived_user_cohort {
       sql: ${TABLE}.quantity_sold ;;
     }
 
+    dimension: net_sales {
+      hidden: yes
+      type: number
+      sql: ${TABLE}.net_sales ;;
+    }
+
     measure: total_quantity_sold {
       type: sum
       value_format: "0.0"
       sql: ${quantity_sold} ;;
+  }
+
+  measure: distinct_customers{
+    type: count_distinct
+    sql: ${customer_uuid} ;;
+    drill_fields: [customer_uuid]
+  }
+
+  measure: total_net_sales {
+    type: sum
+    value_format: "$#,##0.00"
+    sql: ${net_sales} ;;
   }
 
     filter: cohort_filter_sku {

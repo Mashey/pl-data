@@ -91,6 +91,7 @@ view: dim_domo_inventory {
   dimension: weight {
     type: number
     sql: ${TABLE}.weight ;;
+    drill_fields: [productbrand,productname,core_domo_ticket_items.classification]
   }
 
   measure: count {

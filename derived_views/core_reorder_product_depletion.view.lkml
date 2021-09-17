@@ -316,4 +316,12 @@ view: core_reorder_product_depletion {
     value_format_name: percent_1
     sql: (${sum_units_sold_prior7} - ${sum_units_sold_prior7to14})/nullif(${sum_units_sold_prior7to14},0) ;;
   }
+
+  measure: recommended_reorder_amount{
+    label: "Recommended Reorder Amount"
+    description: "Calc as 21 day movement less stock less 5 day movement"
+    type: number
+    value_format_name: decimal_0
+    sql: (${sum_units_sold_prior7}*3)-${sum_remaining_units}+((${sum_units_sold_prior7}/7)*5) ;;
+  }
 }
