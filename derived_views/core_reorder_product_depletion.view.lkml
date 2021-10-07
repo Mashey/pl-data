@@ -317,11 +317,35 @@ view: core_reorder_product_depletion {
     sql: (${sum_units_sold_prior7} - ${sum_units_sold_prior7to14})/nullif(${sum_units_sold_prior7to14},0) ;;
   }
 
-  measure: recommended_reorder_amount{
+  measure: recommended_reorder_amount_5d{
     label: "Recommended Reorder Amount"
     description: "Calc as 21 day movement less stock less 5 day movement"
     type: number
     value_format_name: decimal_0
     sql: (${sum_units_sold_prior7}*3)-${sum_remaining_units}+((${sum_units_sold_prior7}/7)*5) ;;
+  }
+
+  measure: recommended_reorder_amount_4d{
+    label: "Recommended Reorder Amount"
+    description: "Calc as 21 day movement less stock less 4 day movement"
+    type: number
+    value_format_name: decimal_0
+    sql: (${sum_units_sold_prior7}*3)-${sum_remaining_units}+((${sum_units_sold_prior7}/7)*4) ;;
+  }
+
+  measure: recommended_reorder_amount_3d{
+    label: "Recommended Reorder Amount"
+    description: "Calc as 21 day movement less stock less 3 day movement"
+    type: number
+    value_format_name: decimal_0
+    sql: (${sum_units_sold_prior7}*3)-${sum_remaining_units}+((${sum_units_sold_prior7}/7)*3) ;;
+  }
+
+  measure: recommended_reorder_amount_2d{
+    label: "Recommended Reorder Amount"
+    description: "Calc as 21 day movement less stock less 2 day movement"
+    type: number
+    value_format_name: decimal_0
+    sql: (${sum_units_sold_prior7}*3)-${sum_remaining_units}+((${sum_units_sold_prior7}/7)*2) ;;
   }
 }

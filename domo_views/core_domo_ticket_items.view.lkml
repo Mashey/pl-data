@@ -441,7 +441,7 @@ dimension: order_source {
 
   measure: total_units_per_transaction {
     type: number
-    value_format: "0.0"
+    value_format: "0.00"
     sql: ${total_units_sold_net}/nullif(${total_orders},0) ;;
   }
 

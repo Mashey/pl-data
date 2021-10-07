@@ -37,7 +37,7 @@ view: dim_tickets {
       day_of_year
 
     ]
-    convert_tz: yes
+
     datatype: timestamp
     sql: ${TABLE}.date_closed ;;
   }

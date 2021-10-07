@@ -3,17 +3,29 @@ case_sensitive: no
 
 include: "/**/*.view.lkml"
 
-explore: ticket_items {
+explore: core_ticket_items {
   #hidden: yes
-  from: ticket_items
+  from: core_ticket_items
   group_label: " Treez Data_SellTreez"
 
   join: dim_tickets {
     view_label: "Tickets"
     type: left_outer
     relationship: many_to_one
-    sql_on: ${dim_tickets.ticket_id} = ${ticket_items.ticket_id} ;;
+    sql_on: ${dim_tickets.ticket_id} = ${core_ticket_items.ticket_id} ;;
   }
+
+# explore: dim_tickets {
+#   #hidden: yes
+#   from: dim_tickets
+#   group_label: " Treez Data_SellTreez"
+
+#   join: ticket_items {
+#     view_label: "Tickets"
+#     type: inner
+#     relationship: one_to_many
+#     sql_on: ${dim_tickets.ticket_id} = ${ticket_items.ticket_id} ;;
+#   }
 
  join: dim_customers {
     view_label: "Customers"
@@ -32,7 +44,7 @@ explore: ticket_items {
     view_label: "Products"
     type: inner
     relationship: many_to_one
-    sql_on: ${ticket_items.product_id} = ${dim_products.product_id};;
+    sql_on: ${core_ticket_items.ticket_id} = ${dim_products.product_id};;
   }
 
 }
@@ -90,11 +102,11 @@ explore: dim_tickets {
   label: "Tickets"
 
 
-  join: ticket_items {
+  join: core_ticket_items {
     view_label: "Ticket Items"
-    type: left_outer
+    type: inner
     relationship: one_to_many
-    sql_on: ${dim_tickets.ticket_id} = ${ticket_items.ticket_id} ;;
+    sql_on: ${dim_tickets.ticket_id} = ${core_ticket_items.ticket_id} ;;
   }
 
   join: dim_customers {

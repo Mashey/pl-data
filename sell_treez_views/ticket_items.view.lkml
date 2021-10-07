@@ -13,6 +13,7 @@ view: ticket_items {
       quarter,
       year
     ]
+
     sql: ${TABLE}.date_closed ;;
   }
 
@@ -87,6 +88,17 @@ view: ticket_items {
     sql: ${TABLE}.ticket_id ;;
   }
 
+  dimension: net_sales {
+    type: number
+    sql: ${price_sell}*${quantity} ;;
+  }
+
+  measure: total_net_sales {
+    type: sum
+    value_format_name: usd
+    sql: ${net_sales} ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [product_name]
@@ -97,4 +109,5 @@ view: ticket_items {
     value_format: "0.0"
     sql: ${quantity}  ;;
   }
+
 }

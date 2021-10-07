@@ -14,7 +14,14 @@ view: core_ticket_items {
       quarter,
       year
     ]
+
     sql: ${TABLE}.date_closed ;;
+  }
+
+  dimension: PK {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.PK ;;
   }
 
 
@@ -111,5 +118,12 @@ view: core_ticket_items {
     type: sum
     sql: ${quantity} ;;
   }
+
+  measure: total_sales {
+    type: sum
+    value_format_name: usd
+    sql: ${price_sell} ;;
+  }
+
 
 }
