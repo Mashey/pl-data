@@ -318,7 +318,7 @@ view: core_reorder_product_depletion {
   }
 
   measure: recommended_reorder_amount_5d{
-    label: "Recommended Reorder Amount"
+    label: "Recommended Reorder Amount 5d"
     description: "Calc as 21 day movement less stock less 5 day movement"
     type: number
     value_format_name: decimal_0
@@ -326,7 +326,7 @@ view: core_reorder_product_depletion {
   }
 
   measure: recommended_reorder_amount_4d{
-    label: "Recommended Reorder Amount"
+    label: "Recommended Reorder Amount 4d"
     description: "Calc as 21 day movement less stock less 4 day movement"
     type: number
     value_format_name: decimal_0
@@ -334,7 +334,7 @@ view: core_reorder_product_depletion {
   }
 
   measure: recommended_reorder_amount_3d{
-    label: "Recommended Reorder Amount"
+    label: "Recommended Reorder Amount 3d"
     description: "Calc as 21 day movement less stock less 3 day movement"
     type: number
     value_format_name: decimal_0
@@ -342,7 +342,7 @@ view: core_reorder_product_depletion {
   }
 
   measure: recommended_reorder_amount_2d{
-    label: "Recommended Reorder Amount"
+    label: "Recommended Reorder Amount 2d"
     description: "Calc as 21 day movement less stock less 2 day movement"
     type: number
     value_format_name: decimal_0
