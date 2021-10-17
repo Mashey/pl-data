@@ -54,6 +54,7 @@ view: core_domo_invoices {
     type: number
     value_format: "0"
     sql: ${TABLE}.invoice_number ;;
+    drill_fields: [productname]
   }
 
   dimension: product_id {

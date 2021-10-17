@@ -156,6 +156,7 @@ view: core_domo_inventory {
     type: sum
     value_format: "#,##0"
     sql: ${total_units} ;;
+    drill_fields: [core_domo_ticket_items.ticketid]
   }
 
   measure: total_inventory_cost {
