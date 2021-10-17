@@ -41,6 +41,8 @@ view: core_domo_ticket_items {
     timeframes: [
       raw,
       time_of_day,
+      hour,
+      minute,
       hour_of_day,
       date,
       day_of_week,
