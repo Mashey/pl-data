@@ -98,7 +98,7 @@ view: core_domo_customers {
   }
 
   dimension: phone {
-    hidden: yes
+    hidden: no
     type: string
     sql: ${TABLE}.phone ;;
   }
