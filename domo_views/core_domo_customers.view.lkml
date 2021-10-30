@@ -55,11 +55,13 @@ view: core_domo_customers {
   }
 
   dimension: email {
+    hidden: yes
     type: string
     sql: ${TABLE}.email ;;
   }
 
   dimension: first_name {
+    hidden: yes
     type: string
     sql: ${TABLE}.first_name ;;
   }
@@ -75,6 +77,7 @@ view: core_domo_customers {
   }
 
   dimension: last_name {
+    hidden: yes
     type: string
     sql: ${TABLE}.last_name ;;
   }
@@ -95,6 +98,7 @@ view: core_domo_customers {
   }
 
   dimension: phone {
+    hidden: yes
     type: string
     sql: ${TABLE}.phone ;;
   }
