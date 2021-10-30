@@ -55,7 +55,7 @@ view: core_domo_customers {
   }
 
   dimension: email {
-    hidden: yes
+    hidden: no
     type: string
     sql: ${TABLE}.email ;;
   }
