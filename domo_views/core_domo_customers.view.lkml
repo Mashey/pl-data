@@ -61,7 +61,7 @@ view: core_domo_customers {
   }
 
   dimension: first_name {
-    hidden: yes
+    hidden: no
     type: string
     sql: ${TABLE}.first_name ;;
   }
@@ -77,7 +77,7 @@ view: core_domo_customers {
   }
 
   dimension: last_name {
-    hidden: yes
+    hidden: no
     type: string
     sql: ${TABLE}.last_name ;;
   }
