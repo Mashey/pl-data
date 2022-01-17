@@ -128,6 +128,7 @@ view: latest_mc_email_activity {
   }
 
   measure: openers_that_purchased {
+    label: "Conversions"
     type: count_distinct
     sql: ${core_domo_customers.email} ;;
     filters: [action: "open", core_domo_ticket_items.customer_uuid: "-null"]
