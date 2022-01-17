@@ -36,6 +36,7 @@ view: latest_mc_campaigns {
   dimension: archive_url {
     type: string
     sql: ${TABLE}.archive_url ;;
+    html: <a href="{{value}}">{{value}}</a> ;;
   }
 
   dimension: content_type {

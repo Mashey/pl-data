@@ -510,4 +510,11 @@ explore: brand_exclusivity {
         (${core_domo_ticket_items.date_closed_date} > ${latest_mc_sent_to.first_open_date} and
         ${core_domo_ticket_items.date_closed_date} <= date_add(${latest_mc_sent_to.first_open_date}, interval 14 day)) ;;
     }
+
+    join: core_domo_customer_location {
+      view_label: "Customer Loation"
+      type: left_outer
+      relationship: one_to_one
+      sql_on: ${core_domo_customer_location.customer_uuid} = ${core_domo_customers.customer_uuid} ;;
+    }
   }
