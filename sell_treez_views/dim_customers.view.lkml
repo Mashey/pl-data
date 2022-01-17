@@ -36,12 +36,14 @@ view: dim_customers {
   }
 
   dimension: email {
+    hidden: yes
     type: string
     sql: ${TABLE}.email ;;
   }
 
   dimension: first_name {
     type: string
+    hidden: yes
     sql: ${TABLE}.first_name ;;
   }
 
@@ -65,6 +67,7 @@ view: dim_customers {
   }
 
   dimension: last_name {
+    hidden: yes
     type: string
     sql: ${TABLE}.last_name ;;
   }
@@ -111,6 +114,7 @@ view: dim_customers {
   }
 
   dimension: phone {
+    hidden: yes
     type: string
     sql: ${TABLE}.phone ;;
   }

@@ -21,7 +21,7 @@ view: domo_sales_channel_ranking {
 
   dimension: ticket_count {
     type: number
-    sql: ${TABLE}.ticket_count ;;
+    sql: ${TABLE}.count ;;
   }
 
   dimension: ticket_type {

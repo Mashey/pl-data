@@ -8,6 +8,8 @@ view: core_ticket_items {
     timeframes: [
       raw,
       time,
+      hour_of_day,
+      time_of_day,
       date,
       week,
       month,
