@@ -470,3 +470,43 @@ explore: brand_exclusivity {
     view_label: "Invoices - Inventory"
   }
 
+  explore: latest_mc_campaigns {
+    label: "Campaigns"
+    view_label: "Campaigns"
+
+    join: latest_mc_sent_to {
+      view_label: "Sent To"
+      type: left_outer
+      relationship: one_to_many
+      sql_on: ${latest_mc_campaigns.id} = ${latest_mc_sent_to.campaign_id} ;;
+    }
+
+    join: latest_mc_email_activity {
+      view_label: "Email Activity"
+      type: left_outer
+      relationship: one_to_many
+      sql_on: ${latest_mc_sent_to.campaign_id} = ${latest_mc_sent_to.campaign_id} and
+      ${latest_mc_sent_to.email_id} = ${latest_mc_email_activity.email_id} and
+      ${latest_mc_sent_to.list_id} = ${latest_mc_email_activity.list_id};;
+    }
+
+    join: core_domo_customers {
+      view_label: "Customers"
+      type: left_outer
+      relationship: many_to_one
+      sql_on: ${core_domo_customers.email} = coalesce(${latest_mc_sent_to.email_address}, ${latest_mc_email_activity.email_address})
+
+      -- ${latest_mc_sent_to.email_address} = ${core_domo_customers.email}
+      -- OR ${latest_mc_email_activity.email_address} = ${core_domo_customers.email}
+      ;;
+    }
+
+    join: core_domo_ticket_items {
+      view_label: "Ticket Items"
+      type: left_outer
+      relationship: one_to_many
+      sql_on: ${core_domo_ticket_items.customer_uuid} = ${core_domo_customers.customer_uuid} and
+        (${core_domo_ticket_items.date_closed_date} > ${latest_mc_sent_to.first_open_date} and
+        ${core_domo_ticket_items.date_closed_date} <= date_add(${latest_mc_sent_to.first_open_date}, interval 14 day)) ;;
+    }
+  }

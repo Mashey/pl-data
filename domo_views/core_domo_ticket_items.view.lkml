@@ -363,6 +363,7 @@ dimension: order_source {
     type: sum
     value_format: "$#,##0.00"
     sql: ${net_sales} ;;
+    drill_fields: [retail_brand, total_units_sold_net]
   }
 
   measure: total_units_sold_net {
@@ -464,4 +465,5 @@ dimension: order_source {
     value_format: "$#,##0.00"
     sql: ${cost} ;;
   }
+
 }

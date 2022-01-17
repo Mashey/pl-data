@@ -117,6 +117,13 @@ view: core_domo_customers {
     drill_fields: [customer_uuid, email, gender, age_group]
   }
 
+  measure: total_distinct_customer_emails {
+    type: count_distinct
+    value_format: "#,##0"
+    sql: ${email} ;;
+    drill_fields: [customer_uuid, email, gender, age_group]
+  }
+
   measure: total_reward_balance {
     type: sum
     value_format: "$#,##0.00"
