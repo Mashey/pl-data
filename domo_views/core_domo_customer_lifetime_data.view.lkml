@@ -151,6 +151,9 @@ view: core_domo_customer_lifetime_data {
     type: count_distinct
     value_format: "0"
     sql: ${customer_uuid} ;;
+    drill_fields: [customer_uuid,
+                  core_domo_ticket_items.retail_brand,
+                  core_domo_ticket_items.total_units_sold_net]
   }
 
   measure: average_order_value_lifetime {
