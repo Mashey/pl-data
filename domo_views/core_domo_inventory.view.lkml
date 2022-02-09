@@ -184,5 +184,12 @@ view: core_domo_inventory {
     sql: ${weighted_days_aged} ;;
   }
 
+  measure: sku_count {
+    description: "Sku count by unique name/brand"
+    type: count_distinct
+    value_format: "#,##0"
+    sql: CONCAT(${productname},${productbrand},${product_id}) ;;
+  }
+
 
 }

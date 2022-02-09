@@ -220,6 +220,7 @@ dimension: order_source {
     label: "Product Brand"
     type: string
     sql: ${TABLE}.retail_brand ;;
+    drill_fields: [customer_uuid, productbrand, total_units_sold_net]
   }
 
   filter: brand_select {
