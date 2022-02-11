@@ -467,4 +467,19 @@ dimension: order_source {
     sql: ${cost} ;;
   }
 
+  measure: sku_count {
+    description: "Sku count by unique name/brand"
+    type: count_distinct
+    value_format: "#,##0"
+    sql: CONCAT(${productname},${productbrand},${product_id}) ;;
+  }
+
+  measure: brand_count{
+    description: "Brand count"
+    type: count_distinct
+    value_format: "#,##0"
+    sql: ${productbrand} ;;
+    drill_fields: [product_type, productbrand, total_units_sold_net, total_net_sales, revenue_per_unit, count_distinct_customers]
+  }
+
 }

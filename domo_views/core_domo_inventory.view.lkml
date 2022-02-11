@@ -191,5 +191,13 @@ view: core_domo_inventory {
     sql: CONCAT(${productname},${productbrand},${product_id}) ;;
   }
 
+  measure: brand_count{
+    description: "Brand count"
+    type: count_distinct
+    value_format: "#,##0"
+    sql: ${productbrand} ;;
+  }
+
+
 
 }
