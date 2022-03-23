@@ -340,6 +340,12 @@ dimension: order_source {
     sql: ${cbt_tax} ;;
   }
 
+  measure: total_dynamic_tax {
+    type: sum
+    value_format: "$#,##0.00"
+    sql: ${dynamic_tax} ;;
+  }
+
   measure: total_gross_receipts {
     type: sum
     value_format: "$#,##0.00"
@@ -428,7 +434,7 @@ dimension: order_source {
     type: count_distinct
     value_format: "#,##0"
     sql: ${ticketid} ;;
-    drill_fields: [ticketid, product_type, productbrand, productname, total_units_sold_net, total_net_sales]
+    drill_fields: [ticketid, product_type, productbrand, productname, total_units_sold_net, total_net_sales, core_domo_customers.email]
   }
 
   measure: average_order_value {
