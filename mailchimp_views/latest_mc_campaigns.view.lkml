@@ -132,6 +132,7 @@ view: latest_mc_campaigns {
   dimension: title {
     type: string
     sql: JSON_EXTRACT_SCALAR(${TABLE}.settings, '$.title') ;;
+    suggest_persist_for: "24 hours"
     # link: {
     #   label: "Campaign Detail"
     #   url: "/dashboards/63?Title={{ value }}"
