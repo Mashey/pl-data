@@ -220,6 +220,7 @@ dimension: order_source {
     label: "Product Brand"
     type: string
     sql: ${TABLE}.retail_brand ;;
+    drill_fields: [customer_uuid, productbrand, total_units_sold_net]
   }
 
   filter: brand_select {
@@ -339,6 +340,12 @@ dimension: order_source {
     sql: ${cbt_tax} ;;
   }
 
+  measure: total_dynamic_tax {
+    type: sum
+    value_format: "$#,##0.00"
+    sql: ${dynamic_tax} ;;
+  }
+
   measure: total_gross_receipts {
     type: sum
     value_format: "$#,##0.00"
@@ -427,7 +434,7 @@ dimension: order_source {
     type: count_distinct
     value_format: "#,##0"
     sql: ${ticketid} ;;
-    drill_fields: [ticketid, product_type, productbrand, productname, total_units_sold_net, total_net_sales]
+    drill_fields: [ticketid, product_type, productbrand, productname, total_units_sold_net, total_net_sales, core_domo_customers.email]
   }
 
   measure: average_order_value {
@@ -464,6 +471,21 @@ dimension: order_source {
     type: sum
     value_format: "$#,##0.00"
     sql: ${cost} ;;
+  }
+
+  measure: sku_count {
+    description: "Sku count by unique name/brand"
+    type: count_distinct
+    value_format: "#,##0"
+    sql: CONCAT(${productname},${productbrand},${product_id}) ;;
+  }
+
+  measure: brand_count{
+    description: "Brand count"
+    type: count_distinct
+    value_format: "#,##0"
+    sql: ${productbrand} ;;
+    drill_fields: [product_type, productbrand, total_units_sold_net, total_net_sales, revenue_per_unit, count_distinct_customers]
   }
 
 }

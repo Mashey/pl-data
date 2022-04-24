@@ -158,4 +158,18 @@ view: core_domo_customer_lifetime_data {
     value_format: "$#,##0.00"
     sql: ${average_lifetime_revenue}/nullif(${average_lifetime_purchases},0) ;;
   }
+
+  measure: average_frequency{
+    type: average
+    value_format: "0.0"
+    sql: ${customer_visit_frequency} ;;
+  }
+
+  measure: average_percent_outside_frequency {
+    type: average
+    value_format: "0.0\%"
+    sql: ${percent_outside_visit_frequency} ;;
+
+
+  }
 }
