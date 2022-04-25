@@ -1,5 +1,5 @@
 view: core_domo_customers {
-  sql_table_name: `fivetran-purple-lotus-warehous.dbt.core_domo_customers`
+  sql_table_name: `fivetran-purple-lotus-warehous.dbt.core_customers_master`
     ;;
 
   dimension: age {
