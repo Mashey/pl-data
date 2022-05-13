@@ -169,10 +169,6 @@ view: core_domo_ticket_items {
     sql: ${rev_per_unit} ;;
  }
 
-dimension: order_source {
-  type: string
-  sql:  ${TABLE}.order_source ;;
-}
 
   dimension: priceunit {
     type: number
