@@ -1,5 +1,5 @@
 view: core_domo_ticket_items {
-  sql_table_name: `fivetran-purple-lotus-warehous.dbt.core_domo_ticket_items`
+  sql_table_name: `fivetran-purple-lotus-warehous.dbt.core_domo_upsert_tickets`
     ;;
 
   dimension: cashier {
@@ -168,7 +168,6 @@ view: core_domo_ticket_items {
     style: integer
     sql: ${rev_per_unit} ;;
  }
-
 
   dimension: priceunit {
     type: number
