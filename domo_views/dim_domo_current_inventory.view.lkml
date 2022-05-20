@@ -144,7 +144,7 @@ view: dim_domo_current_inventory {
     type: sum
     value_format: "$#,##0.00"
     sql: ${total_cost_with_excise} ;;
-    drill_fields: [producttype, productbrand, productname, days_aged_weighted, sum_available_units, total_cost_with_excise,
+    drill_fields: [producttype, productbrand, productname, days_aged_weighted, sum_available_units, sum_total_cost,
       core_domo_ticket_items.gross_margin]
   }
 
