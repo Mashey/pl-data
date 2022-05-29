@@ -55,7 +55,7 @@ view: core_domo_ticket_items {
       week_of_year
     ]
     convert_tz: no
-    datatype: date
+    datatype: timestamp
     sql: ${TABLE}.date_closed ;;
   }
 
