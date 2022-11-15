@@ -40,8 +40,6 @@ view: core_domo_ticket_items {
     type: time
     timeframes: [
       raw,
-      time_of_day,
-      hour_of_day,
       date,
       day_of_week,
       day_of_month,
@@ -55,7 +53,7 @@ view: core_domo_ticket_items {
       week_of_year
     ]
     convert_tz: no
-    datatype: timestamp
+    datatype: date
     sql: ${TABLE}.date_closed ;;
   }
 
