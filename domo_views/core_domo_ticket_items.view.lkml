@@ -1,5 +1,5 @@
 view: core_domo_ticket_items {
-  sql_table_name: `fivetran-purple-lotus-warehous.dbt.core_domo_upsert_tickets`
+  sql_table_name: `fivetran-purple-lotus-warehous.dbt.core_domo_ticket_items`
     ;;
 
   dimension: cashier {
