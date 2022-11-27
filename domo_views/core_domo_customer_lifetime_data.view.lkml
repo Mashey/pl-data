@@ -119,7 +119,7 @@ view: core_domo_customer_lifetime_data {
 
   measure: average_lifetime_gross_profit{
     type: average
-    value_format: "$#,##0.00"
+    value_format: "$#.00;($#.00)"
     sql: ${lifetime_gross_profit} ;;
   }
 
