@@ -34,6 +34,8 @@ view: core_domo_customers {
       quarter,
       year
     ]
+    convert_tz: no
+    datatype: date
     sql: ${TABLE}.customer_signup_date ;;
   }
 
