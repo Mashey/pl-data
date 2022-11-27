@@ -394,7 +394,7 @@ view: core_domo_ticket_items {
 
   measure: total_gross_profit{
     type: number
-    value_format: "$#.00;($#.00)"
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${total_net_sales} - ${total_cost_without_excise} ;;
   }
 
