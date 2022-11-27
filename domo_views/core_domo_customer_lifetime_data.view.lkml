@@ -2,20 +2,20 @@ view: core_domo_customer_lifetime_data {
   sql_table_name: `fivetran-purple-lotus-warehous.dbt.core_domo_customer_lifetime_data`
     ;;
 
-  dimension: avg_checkout_time_seconds {
-    type: number
-    sql: ${TABLE}.avg_checkout_time_seconds ;;
-  }
+  # dimension: avg_checkout_time_seconds {
+  #   type: number
+  #   sql: ${TABLE}.avg_checkout_time_seconds ;;
+  # }
 
-  dimension: avg_day_between_visits {
-    type: number
-    sql: ${TABLE}.avg_day_between_visits ;;
-  }
+  # dimension: avg_day_between_visits {
+  #   type: number
+  #   sql: ${TABLE}.avg_day_between_visits ;;
+  # }
 
-  dimension: avg_visit_time_seconds {
-    type: number
-    sql: ${TABLE}.avg_visit_time_seconds ;;
-  }
+  # dimension: avg_visit_time_seconds {
+  #   type: number
+  #   sql: ${TABLE}.avg_visit_time_seconds ;;
+  # }
 
   dimension: customer_uuid {
     primary_key: yes
@@ -107,10 +107,10 @@ view: core_domo_customer_lifetime_data {
     sql: ${TABLE}.lifetime_visits ;;
   }
 
-  dimension: visit_without_purchase {
-    type: number
-    sql: ${TABLE}.visit_without_purchase ;;
-  }
+  # dimension: visit_without_purchase {
+  #   type: number
+  #   sql: ${TABLE}.visit_without_purchase ;;
+  # }
 
   measure: count {
     type: count
