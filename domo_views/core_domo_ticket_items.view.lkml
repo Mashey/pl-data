@@ -434,7 +434,7 @@ view: core_domo_ticket_items {
   measure: average_orders {
     type: number
     value_format: "#,##0"
-    sql: average(${total_orders});;
+    sql: avg(${total_orders});;
   }
 
   measure: average_order_value {
