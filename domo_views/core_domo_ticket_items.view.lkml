@@ -432,9 +432,9 @@ view: core_domo_ticket_items {
   }
 
   measure: average_orders {
-    type: number
+    type: average_distinct
     value_format: "#,##0"
-    sql: avg(${total_orders});;
+    sql: ${ticketid};;
   }
 
   measure: average_order_value {
