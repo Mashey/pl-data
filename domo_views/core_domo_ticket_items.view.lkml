@@ -91,7 +91,7 @@ view: core_domo_ticket_items {
       year
     ]
     convert_tz: no
-    datatype: datetime
+    datatype: timestamp
     sql: ${TABLE}.date_time_closed ;;
   }
 
