@@ -430,6 +430,12 @@ view: core_domo_ticket_items {
     drill_fields: [ticketid, product_type, retail_brand, productname, total_units_sold_net, total_net_sales, core_domo_customers.email]
   }
 
+  measure: average_orders {
+    type: average_distinct
+    value_format: "#,##0"
+    sql: ${ticketid} ;;
+  }
+
   measure: average_order_value {
     type: number
     value_format: "$#,##0.00"
