@@ -32,7 +32,8 @@ view: dim_domo_current_inventory {
     type: string
     sql: ${TABLE}.productbrand ;;
     drill_fields: [productname, weight,
-      core_domo_ticket_items.classification]
+      core_domo_ticket_items.classification,
+      core_domo_inventory.cost_per_unit]
   }
 
   dimension: productname {
@@ -59,7 +60,8 @@ view: dim_domo_current_inventory {
     [productname,
       productbrand,
       weight,
-      core_domo_ticket_items.classification]
+      core_domo_ticket_items.classification,
+      core_domo_inventory.cost_per_unit_without_excise]
   }
 
   dimension: total_cost {
