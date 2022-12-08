@@ -146,7 +146,7 @@ explore: core_domo_ticket_items {
   join: core_domo_discount {
     view_label: "Discounts"
     type: left_outer
-    relationship: one_to_one
+    relationship: one_to_many
     sql_on: ${core_domo_discount.ticketlineid} = ${core_domo_ticket_items.ticketlineid} ;;
   }
 
