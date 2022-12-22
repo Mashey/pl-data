@@ -48,6 +48,7 @@ view: core_domo_ticket_items {
       month_name,
       month_num,
       quarter,
+      quarter_of_year,
       year,
       day_of_year,
       week_of_year
