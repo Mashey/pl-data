@@ -222,9 +222,9 @@ explore: core_domo_ticket_items {
 
   join: derived_user_cohort {
     view_label: "XX - User Cohort Filters"
-    type: inner
+    type: left_outer
     relationship: many_to_one
-    sql_on: ${core_domo_ticket_items.customer_uuid} = ${derived_user_cohort.customer_uuid} ;;
+    sql_on: ${core_domo_ticket_items.customer_uuid} = ${derived_user_cohort.customer_uuid} AND ${core_domo_ticket_items.date_closed_date} = ${derived_user_cohort.date_closed_date};;
   }
 
 }
