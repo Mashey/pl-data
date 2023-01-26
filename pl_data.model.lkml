@@ -228,7 +228,7 @@ explore: core_domo_ticket_items {
   }
 
   join: Stiiizy_test {
-    view_label: "BayLifeFav_test"
+    view_label: "Stiiizy_test"
     type: inner
     relationship: many_to_one
     sql_on: ${core_domo_ticket_items.customer_uuid} = ${Stiiizy_test.customer_uuid} ;;
