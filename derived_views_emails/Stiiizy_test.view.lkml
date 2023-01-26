@@ -1,7 +1,7 @@
 # If necessary, uncomment the line below to include explore_source.
 # include: "pl_data.model.lkml"
 
-view: BayLifeFav_test {
+view: Stiiizy_test {
   derived_table: {
     explore_source: core_domo_ticket_items {
       column: customer_uuid {}
@@ -11,7 +11,7 @@ view: BayLifeFav_test {
       }
       filters: {
         field: domo_brand_ranking.retail_brand
-        value: "BAY LIFE"
+        value: "STIIIZY"
       }
       filters: {
         field: core_domo_ticket_items.date_closed_date

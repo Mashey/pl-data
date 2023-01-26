@@ -227,11 +227,11 @@ explore: core_domo_ticket_items {
     sql_on: ${core_domo_ticket_items.customer_uuid} = ${derived_user_cohort.customer_uuid};;
   }
 
-  join: BayLifeFav_test {
+  join: Stiiizy_test {
     view_label: "BayLifeFav_test"
     type: inner
     relationship: many_to_one
-    sql_on: ${core_domo_ticket_items.customer_uuid} = ${BayLifeFav_test.customer_uuid} ;;
+    sql_on: ${core_domo_ticket_items.customer_uuid} = ${Stiiizy_test.customer_uuid} ;;
   }
 
 }
