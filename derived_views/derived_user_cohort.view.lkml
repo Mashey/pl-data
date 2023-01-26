@@ -1,7 +1,7 @@
 view: derived_user_cohort {
   derived_table: {
 
-    sql: SELECT ct.customer_uuid,
+    sql: SELECT ct.customer_uuid AS customer_uuid,
                 timestamp(ct.date_closed) AS date_closed,
                 sum(ct.quantity) as quantity_sold,
                 sum(ct.net_sales) as net_sales
@@ -40,7 +40,7 @@ view: derived_user_cohort {
     }
 
     dimension_group: date_closed {
-      hidden: yes
+      hidden: no
       type: time
       timeframes: [
         raw,
