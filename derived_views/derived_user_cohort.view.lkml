@@ -121,7 +121,7 @@ view: derived_user_cohort {
 
   filter: cohort_filter_brand_ranking {
     description: "Filters by brand ranking using numbers. Top filter is by 1 which represents the top purchased brand"
-    type: string
+    type: number
     suggest_explore: `fivetran-purple-lotus-warehous.dbt.domo_brand_ranking`
     suggest_dimension: `fivetran-purple-lotus-warehous.dbt.domo_brand_ranking.brand_ranking`
   }
