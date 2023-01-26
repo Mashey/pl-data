@@ -2,7 +2,7 @@ view: derived_user_cohort {
   derived_table: {
 
     sql: SELECT ct.customer_uuid AS customer_uuid,
-                timestamp(ct.date_closed) AS date_closed,
+                # timestamp(ct.date_closed) AS date_closed,
                 sum(ct.quantity) as quantity_sold,
                 sum(ct.net_sales) as net_sales
                 FROM `fivetran-purple-lotus-warehous.dbt.core_domo_ticket_items` ct
@@ -14,12 +14,11 @@ view: derived_user_cohort {
                 WHERE ({% condition cohort_filter_item_name %} di.productname {% endcondition %})
                   AND ({% condition cohort_filter_sku %} di.product_id {% endcondition %} )
                   AND ({% condition cohort_filter_brand_name %} di.productbrand {% endcondition %} )
-                  AND ({% condition cohort_filter_date_closed %} timestamp(ct.date_closed) {% endcondition %} )
                   AND ({% condition cohort_filter_discount_date_closed %} timestamp(d.date_closed) {% endcondition %} )
                   AND ({% condition cohort_filter_discount_title %} d.discount_title {% endcondition %} )
                   AND ({% condition cohort_filter_brand_name_brandRank %} br.retail_brand {% endcondition %} )
                   AND ({% condition cohort_filter_brand_ranking %} br.brand_ranking {% endcondition %} )
-                GROUP BY 1,2;;
+                GROUP BY 1;;
 
     }
 
@@ -27,39 +26,40 @@ view: derived_user_cohort {
 
     dimension: customer_uuid {
       hidden: no
+      primary_key: yes
       description: "Unique ID for each user that has ordered"
       type: string
       sql: ${TABLE}.customer_uuid ;;
     }
 
-    dimension: PK {
-      hidden: yes
-      primary_key: yes
-      type: string
-      sql: CONCAT(${customer_uuid},${date_closed_date},${quantity_sold}) ;;
-    }
+    # dimension: PK {
+    #   hidden: yes
+    #   primary_key: yes
+    #   type: string
+    #   sql: CONCAT(${customer_uuid},${date_closed_date},${quantity_sold}) ;;
+    # }
 
-    dimension_group: date_closed {
-      hidden: no
-      type: time
-      timeframes: [
-        raw,
-        time_of_day,
-        hour_of_day,
-        date,
-        day_of_month,
-        week,
-        month,
-        month_name,
-        month_num,
-        quarter,
-        year,
-        day_of_year
-        ]
-      convert_tz: no
-      datatype: timestamp
-      sql: ${TABLE}.date_closed ;;
-    }
+    # dimension_group: date_closed {
+    #   hidden: no
+    #   type: time
+    #   timeframes: [
+    #     raw,
+    #     time_of_day,
+    #     hour_of_day,
+    #     date,
+    #     day_of_month,
+    #     week,
+    #     month,
+    #     month_name,
+    #     month_num,
+    #     quarter,
+    #     year,
+    #     day_of_year
+    #     ]
+    #   convert_tz: no
+    #   datatype: timestamp
+    #   sql: ${TABLE}.date_closed ;;
+    # }
 
     dimension: quantity_sold {
       hidden: yes
@@ -139,8 +139,8 @@ view: derived_user_cohort {
 
 
 
-  filter: cohort_filter_date_closed {
-  type: date
+  # filter: cohort_filter_date_closed {
+  # type: date
 
-   }
+  # }
   }
