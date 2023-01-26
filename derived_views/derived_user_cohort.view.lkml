@@ -2,24 +2,25 @@ view: derived_user_cohort {
   derived_table: {
 
     sql: SELECT ct.customer_uuid AS customer_uuid,
-                timestamp(ct.date_closed) AS date_closed,
-                sum(ct.quantity) as quantity_sold,
-                sum(ct.net_sales) as net_sales
+                # timestamp(ct.date_closed) AS date_closed,
+                # sum(ct.quantity) as quantity_sold,
+                # sum(ct.net_sales) as net_sales
                 FROM `fivetran-purple-lotus-warehous.dbt.core_domo_ticket_items` ct
 
                 LEFT JOIN `fivetran-purple-lotus-warehous.dbt.dim_domo_inventory` di ON di.product_id = ct.product_id
                 LEFT JOIN `fivetran-purple-lotus-warehous.dbt.core_domo_customers` cc ON ct.customer_uuid = cc.customer_uuid
                 LEFT JOIN `fivetran-purple-lotus-warehous.dbt.core_domo_discount` d ON d.customer_uuid = ct.customer_uuid
                 LEFT JOIN `fivetran-purple-lotus-warehous.dbt.domo_brand_ranking` br ON br.customer_uuid = ct.customer_uuid
+                LEFT JOIN `fivetran-purple-lotus-warehous.dbt.core_domo_ticket_items` ct2 on ct.customer_uuid = ct2.customer_uuid
                 WHERE ({% condition cohort_filter_item_name %} di.productname {% endcondition %})
                   AND ({% condition cohort_filter_sku %} di.product_id {% endcondition %} )
                   AND ({% condition cohort_filter_brand_name %} di.productbrand {% endcondition %} )
                   AND ({% condition cohort_filter_discount_date_closed %} timestamp(d.date_closed) {% endcondition %} )
-                  AND ({% condition cohort_filter_date_closed%} timestamp(ct.date_closed) {% endcondition %} )
+                  AND ({% condition cohort_filter_date_closed%} timestamp(ct2.date_closed) {% endcondition %} )
                   AND ({% condition cohort_filter_discount_title %} d.discount_title {% endcondition %} )
                   AND ({% condition cohort_filter_brand_name_brandRank %} br.retail_brand {% endcondition %} )
                   AND ({% condition cohort_filter_brand_ranking %} br.brand_ranking {% endcondition %} )
-                GROUP BY 1,2;;
+                GROUP BY 1;;
 
     }
 
@@ -33,52 +34,52 @@ view: derived_user_cohort {
       sql: ${TABLE}.customer_uuid ;;
     }
 
-    dimension: PK {
-      hidden: yes
-      primary_key: yes
-      type: string
-      sql: CONCAT(${customer_uuid},${date_closed_date},${quantity_sold}) ;;
-    }
+    # dimension: PK {
+    #   hidden: yes
+    #   primary_key: yes
+    #   type: string
+    #   sql: CONCAT(${customer_uuid},${date_closed_date},${quantity_sold}) ;;
+    # }
 
-    dimension_group: date_closed {
-      hidden: no
-      type: time
-      timeframes: [
-        raw,
-        time_of_day,
-        hour_of_day,
-        date,
-        day_of_month,
-        week,
-        month,
-        month_name,
-        month_num,
-        quarter,
-        year,
-        day_of_year
-        ]
-      convert_tz: no
-      datatype: timestamp
-      sql: ${TABLE}.date_closed ;;
-    }
+    # dimension_group: date_closed {
+    #   hidden: no
+    #   type: time
+    #   timeframes: [
+    #     raw,
+    #     time_of_day,
+    #     hour_of_day,
+    #     date,
+    #     day_of_month,
+    #     week,
+    #     month,
+    #     month_name,
+    #     month_num,
+    #     quarter,
+    #     year,
+    #     day_of_year
+    #     ]
+    #   convert_tz: no
+    #   datatype: timestamp
+    #   sql: ${TABLE}.date_closed ;;
+    # }
 
-    dimension: quantity_sold {
-      hidden: yes
-      type: number
-      sql: ${TABLE}.quantity_sold ;;
-    }
+  #   dimension: quantity_sold {
+  #     hidden: yes
+  #     type: number
+  #     sql: ${TABLE}.quantity_sold ;;
+  #   }
 
-    dimension: net_sales {
-      hidden: yes
-      type: number
-      sql: ${TABLE}.net_sales ;;
-    }
+  #   dimension: net_sales {
+  #     hidden: yes
+  #     type: number
+  #     sql: ${TABLE}.net_sales ;;
+  #   }
 
-    measure: total_quantity_sold {
-      type: sum
-      value_format: "0.0"
-      sql: ${quantity_sold} ;;
-  }
+  #   measure: total_quantity_sold {
+  #     type: sum
+  #     value_format: "0.0"
+  #     sql: ${quantity_sold} ;;
+  # }
 
   measure: distinct_customers{
     type: count_distinct
@@ -86,11 +87,11 @@ view: derived_user_cohort {
     drill_fields: [customer_uuid]
   }
 
-  measure: total_net_sales {
-    type: sum
-    value_format: "$#,##0.00"
-    sql: ${net_sales} ;;
-  }
+  # measure: total_net_sales {
+  #   type: sum
+  #   value_format: "$#,##0.00"
+  #   sql: ${net_sales} ;;
+  # }
 
     filter: cohort_filter_sku {
       description: "SKU to filter cohort - filter on all users that purchased this sku"
