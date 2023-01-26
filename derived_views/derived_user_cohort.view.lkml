@@ -28,7 +28,7 @@ view: derived_user_cohort {
     dimension: customer_uuid {
       hidden: no
       description: "Unique ID for each user that has ordered"
-      type: number
+      type: string
       sql: ${TABLE}.customer_uuid ;;
     }
 
