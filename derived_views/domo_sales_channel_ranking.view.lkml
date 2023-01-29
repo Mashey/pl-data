@@ -37,13 +37,13 @@ view: domo_sales_channel_ranking {
 
   measure: total_ticket_count {
     type: sum
-    value_format: "0.00"
+    value_format: "#,##0"
     sql: ${ticket_count} ;;
   }
 
   measure: distinct_customers {
     type: count_distinct
-    value_format: "0.00"
+    value_format: "#,##0"
     sql: ${customer_uuid} ;;
   }
 }
