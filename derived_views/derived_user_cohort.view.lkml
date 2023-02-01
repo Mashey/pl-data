@@ -17,6 +17,7 @@ view: derived_user_cohort {
                   AND ({% condition cohort_filter_discount_title %} d.discount_title {% endcondition %} )
                   AND ({% condition cohort_filter_brand_name_brandRank %} br.retail_brand {% endcondition %} )
                   AND ({% condition cohort_filter_brand_ranking %} br.brand_ranking {% endcondition %} )
+                  AND ({% condition cohort_filter_ticketChannel %} ct2.ticket_type {% endcondition %} )
                 GROUP BY 1;;
 
     }
@@ -135,6 +136,13 @@ view: derived_user_cohort {
     suggest_explore: `fivetran-purple-lotus-warehous.dbt.core_domo_discount`
     suggest_dimension: `fivetran-purple-lotus-warehous.dbt.core_domo_discount.discount_title`
     }
+
+  filter: cohort_filter_ticketChannel {
+    description: "ticketChannel to filter cohort - filter on all users that used this channel"
+    type: string
+    suggest_explore: `fivetran-purple-lotus-warehous.dbt.core_domo_ticket_items`
+    suggest_dimension: `fivetran-purple-lotus-warehous.dbt.core_domo_ticket_items.ticket_type`
+  }
 
 
 
