@@ -12,9 +12,9 @@ view: derived_user_cohort {
                 LEFT JOIN `fivetran-purple-lotus-warehous.dbt.core_domo_discount` d ON d.customer_uuid = ct.customer_uuid
                 LEFT JOIN `fivetran-purple-lotus-warehous.dbt.domo_brand_ranking` br ON br.customer_uuid = ct.customer_uuid
                 LEFT JOIN `fivetran-purple-lotus-warehous.dbt.core_domo_ticket_items` ct2 on ct.customer_uuid = ct2.customer_uuid
-                WHERE ({% condition cohort_filter_item_name %} di.productname {% endcondition %})
-                  AND ({% condition cohort_filter_sku %} di.product_id {% endcondition %} )
-                  AND ({% condition cohort_filter_brand_name %} di.productbrand {% endcondition %} )
+                WHERE ({% condition cohort_filter_item_name %} ct2.productname {% endcondition %})
+                  AND ({% condition cohort_filter_sku %} ct2.product_id {% endcondition %} )
+                  AND ({% condition cohort_filter_brand_name %} ct2.productbrand {% endcondition %} )
                   AND ({% condition cohort_filter_discount_date_closed %} timestamp(d.date_closed) {% endcondition %} )
                   AND ({% condition cohort_filter_date_closed%} timestamp(ct2.date_closed) {% endcondition %} )
                   AND ({% condition cohort_filter_discount_title %} d.discount_title {% endcondition %} )
