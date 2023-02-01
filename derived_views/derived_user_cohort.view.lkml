@@ -1,10 +1,7 @@
 view: derived_user_cohort {
   derived_table: {
 
-    sql: SELECT ct.customer_uuid AS customer_uuid,
-                # timestamp(ct.date_closed) AS date_closed,
-                # sum(ct.quantity) as quantity_sold,
-                # sum(ct.net_sales) as net_sales
+    sql: SELECT ct.customer_uuid AS customer_uuid
                 FROM `fivetran-purple-lotus-warehous.dbt.core_domo_ticket_items` ct
 
                 LEFT JOIN `fivetran-purple-lotus-warehous.dbt.dim_domo_inventory` di ON di.product_id = ct.product_id
